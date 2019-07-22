@@ -1,0 +1,43 @@
+body{
+	overflow-x:hidden;
+}
+.zi1{
+	font-size: 20px;
+	font-weight: bold;
+	border-bottom: solid #000000 1px;
+}
+.zi2{
+	font-size: 50px;
+	font-weight: bold;
+}
+.zi3{
+	font-size: 16px;
+}
+.zi4{
+	font-size: 18px;
+	font-weight: bold;
+	border-bottom: solid #A9A9A9 1px;
+}
+div a{
+	text-decoration:none;
+	color: black;
+}
+.row{
+	margin-bottom:70px;
+}
+#pic:hover{
+	opacity: 0.6;
+}
+#line{
+	border: solid #CFCFCF 1px;
+}
+span{
+	font-size: 15px;
+}
+[class*="col-"]{
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.navbar{
+	border: 0 !important;
+}

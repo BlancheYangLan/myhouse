@@ -1,0 +1,131 @@
+body{
+	font-size: 24px;
+}
+.search-size{
+	display: inline-block;
+	width: 170px;
+}
+.mui-scroll img{
+	width: 150px;
+	height: 80px;
+}
+
+.mui-movie  .mui-movie-row{
+	position: relative;
+	width: 100%;
+	min-width: 350px;
+	margin: 10px auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content:space-between;
+}
+.mui-movie .mui-movie-hader{
+	position: relative;
+	width: 100%;
+	height: 260px;
+}
+.mui-movie .mui-movie-row .mui-movie-row-item{
+	list-style-type: none;
+	width: 49.5%;
+}
+.mui-movie .mui-movie-row .mui-movie-row-item img{
+	width: 100%;
+	height: 120px;
+}
+.bor-top{
+	position: relative;
+	width: 90%;
+	height: 50px;
+	margin: 0 auto;
+	border-top: 0.5px solid #C8C7CC;
+}
+.bor-top i{
+	position: relative;
+	color: #CF2D28;
+	margin-left: 20%;
+	font-size:18px ;
+}
+.bor-top span{
+	font-size:12px ;
+	color: #777777;
+}
+.mui-bor-movie{
+	position: relative;
+	left: -20px;
+	width: 175px;
+}
+.mui-scroll div{
+	display: inline;
+	height: 130px;
+}
+.mui-scroll p{
+	position: relative;
+	margin-top: -20px;
+	width: 150px;
+	font-size: 12px;
+	text-align: left !important;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.mui-control-item-div {
+	padding: 1px !important;
+	/* margin: 0px !important; */
+}
+.mui-scroll div {
+	border-bottom: none !important;
+}
+
+.mui-slider .mui-slider-loop p{
+	position: relative;
+	width: 100%;
+	height: 25px;
+	color: #000000;
+	background-color: #DDDDDD;
+}
+.mui-slider-vip{
+	position: relative;
+	top: -305px;
+	margin-right: 5px;
+	width: 50px;
+	height: 30px;
+}
+.mui-slider-Describe{
+	position: relative;
+	top: -10px;
+	margin-right: 5px;
+}
+.mui-slider-theatre{
+	position: relative;
+	margin-top: -255px;
+	margin-right: 5px;
+	width: 50px;
+	height: 30px;
+}
+.mui-slider-theatre-p{
+	position: relative;
+	top: -30px;
+	font-size: 15px;
+	color: #FAFAFA;
+}
+.mui-slider-theatre-p1{
+	position: relative;
+	top: -30px;
+	margin-right: -30px;
+	font-size: 15px;
+	color: #FAFAFA;
+}
+.mui-slider-theatre-img{
+	position: relative;
+	top:-120px;
+	margin-right: 5px;
+	width: 30px;
+	height: 20px;
+}
+.mui-slider-theatre-img img{
+	height: 20px !important;
+}
+
+
+

@@ -1,0 +1,25 @@
+/* CSS Document */
+body
+{
+	  overflow-x : hidden;  
+     overflow-y : hidden;
+	
+
+}
+
+#daohang{  
+   background-image:url(../../img/fq_img/3.jpg);
+   height:170px;
+   
+}
+#daohang1{
+	background-color:#FFF;
+	position:relative;
+	top:60px;
+}
+
+#logo{
+	position:absolute;
+	top:-50px;
+
+}

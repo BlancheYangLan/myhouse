@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.css" rel="stylesheet" />
+		<link href="../css/movieScreening.css" rel="stylesheet" />
+		<script src="../js/mui.js"></script>
+		<script src="../js/vue.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				gestureConfig: {
+					tap: true, //默认为true
+					doubletap: true, //默认为false
+					longtap: true, //默认为false
+					swipe: true, //默认为true
+					drag: true, //默认为true
+					hold: false, //默认为false，不监听
+					release: false //默认为false，不监听
+				}
+			});
+			
+			mui.plusReady(function() {
+				var self = plus.webview.currentWebview(); //接收参数
+				//alert(self.toString());
+				var ids = self.ids;
+				var url = self.url;
+				var video=mui('.mui-video video')[0];//设置路径
+				video.src=url;
+				var vue = new Vue({
+					el: '#moviecontent',
+					data: {
+						moviename: "",
+						movieyear: "",
+						movietype: "",
+						moviedirector: "",
+						movieintroduction: ""
+					}
+				});
+				
+				mui.post('https://192.168.43.157:1443/selectMovie.html', {
+					ids: ids
+				}, function(data) {
+					vue.moviename = data[0].moviename;
+					vue.movieyear = data[0].movieyear;
+					vue.movietype = data[0].movietype;
+					vue.moviedirector = data[0].moviedirector;
+					vue.movieintroduction = data[0].movieintroduction;
+					setTimeout(function(){
+						mui('div.mui-content').on('tap', 'div.mui-return span', function() {
+							mui.back();
+						});
+					}, 500);
+				}, 'json');
+				
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="moviecontent" class="mui-content">
+			<div class="mui-video">
+				<video src="" width="100%" height="200" controls autoplay=""></video>
+			</div>
+			<div class="mui-return">
+				<span class="mui-icon mui-icon-back"></span>
+			</div>
+			<div class="mui-video-name">
+				<span>{{moviename}}</span>
+			</div>
+			<div class="mui-video-content">
+				<span>{{movieyear}}</span>
+				<span>{{movietype}}</span>
+			</div>
+			<div class="mui-video-director">
+				<span>影片导演:</span>
+				<span>{{moviedirector}}</span>
+			</div>
+			<div class="mui-video-introduction">
+				<span id="introduction_1">影片简介：</span>
+				<span>{{movieintroduction}}</span>
+			</div>
+		</div>
+	</body>
+
+</html>

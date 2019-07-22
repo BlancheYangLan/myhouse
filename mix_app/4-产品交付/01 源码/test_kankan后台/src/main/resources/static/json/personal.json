@@ -1,0 +1,42 @@
+{
+	"lattice":[{
+		"latticeimg":"http://192.168.43.175/img/Collection.png",
+		"latticewrt":"我的收藏",
+		"latticelink":""
+	},
+	{
+		"latticeimg":"http://192.168.43.175/img/record.png",
+		"latticewrt":"观看记录",
+		"latticelink":""
+	},
+	{
+		"latticeimg":"http://192.168.43.175/img/download.png",
+		"latticewrt":"我的下载",
+		"latticelink":""
+	},
+	{
+		"latticeimg":"http://192.168.43.175/img/skin.png",
+		"latticewrt":"主题皮肤",
+		"latticelink":""
+	},
+	{
+		"latticeimg":"http://192.168.43.175/img/feedback.png",
+		"latticewrt":"意见反馈",
+		"latticelink":"opinion.html"
+	},
+	{
+		"latticeimg":"http://192.168.43.175/img/install.png",
+		"latticewrt":"设置",
+		"latticelink":"Setup.html"
+	},
+	{
+		"latticeimg":"http://192.168.43.175/img/help.png",
+		"latticewrt":"帮助",
+		"latticelink":"help.html"
+	}],
+	"slider": [
+		"http://192.168.43.175/img/Newsinformation.png",
+		"http://192.168.43.175/img/Contactinformation.png"
+		"http://192.168.43.175/img/foundation.png"
+	]
+}

@@ -1,0 +1,26 @@
+@charset "utf-8";
+body {
+	background-color:#DDD;
+}
+.row{
+	margin-bottom: 30px;
+    background-color:#FFF;
+	}
+.xx{
+	padding-top: 15px;
+	padding-left:40px;
+	padding-bottom: 40px;     		
+} 
+.bt{
+	font-family: "宋体";
+	font-style: italic;
+	font-size: 26px;
+	color:#999;
+	font-weight: bold;
+}
+.wi{
+	width:840px;
+}
+.xxx{
+	width:840px;
+}

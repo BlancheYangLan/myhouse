@@ -1,0 +1,248 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.css" rel="stylesheet" />
+		<link href="../css/edit_information.css" rel="stylesheet" />
+		<link href="../css/mui.picker.css" rel="stylesheet" />
+		<link href="../css/mui.poppicker.css" rel="stylesheet" />
+		<link href="../css/mui.dtpicker.css" rel="stylesheet" />
+		<script src="../js/mui.js"></script>
+		<script src="../js/mui.picker.min.js"></script>
+		<script src="../js/citys.js"></script>
+		<script src="../js/vue.min.js"></script>
+		<script type="text/javascript">
+			var userId;
+			mui.ready(
+			function updataLoginState() {
+				var datas = localStorage.getItem('userInfo');
+				var user = JSON.parse(datas);
+				userId = user.userId;
+				
+			}
+			)
+			mui.init({
+				gestureConfig: {
+					tap: true, //默认为true
+					doubletap: true, //默认为false
+					longtap: true, //默认为false
+					swipe: true, //默认为true
+					drag: true, //默认为true
+					hold: false, //默认为false，不监听
+					release: false //默认为false，不监听
+				}
+			});
+			var vue = new Vue({
+				el: '#mui-content',
+				data: {
+					user_picture: "",
+					user_nickname: "",
+					user_sex: "",
+					user_birthday: "",
+					user_address: "",
+					user_Signature: ""
+				}
+			});
+			/* mui.get('https://192.168.43.157:1443/selectUser.html', {userId:userId},function(data) {
+				//alert(data[0].u_name);
+				vue.user_picture = data[0].u_avatar;
+				vue.user_nickname = data[0].u_name;
+				vue.user_sex = data[0].u_sex;
+				vue.user_birthday = data[0].u_data;
+				vue.user_address = data[0].u_address;
+				vue.user_Signature = data[0].u_signature;
+				alert(vue.user_nickname);
+				alert(vue.user_sex)
+				alert(vue.user_birthday)
+				alert(vue.user_address)
+				//alert(vue.user_birthday)
+				//alert(data)
+			}, 'json') */
+			mui.plusReady(function() {
+				mui('header.mui-bar').on('tap', 'a#conserve', function() {
+					var imgUrl = mui("#imgUrl")[0].value;
+					var name = mui("#name")[0].value;
+					var sex = mui("#sex")[0].value;
+					var birthday = mui("#birthday")[0].value;
+					var address = mui("#address")[0].value;
+					var signature = mui("#signature")[0].value;
+					alert(address)
+					mui.post('https://192.168.43.157:1443/updataUser.html', {
+						userId:userId,
+						/* imgUrl:imgUrl, */
+						/* name: name, */
+						sex: sex,
+						
+						birthday: birthday,
+						address: address,
+						signature:signature
+					}, function(data) {
+						alert(data.success);
+					}, 'json')
+				});
+			})
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav mui-badge-block">
+			<a href="#" id="icon-menu" class="mui-active-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<a id="conserve" href="#" class="mui-pull-right mui-a-baocun">
+				<h4>保存</h4>
+			</a>
+			<h1 class="mui-title mui-font-color-white">编辑资料</h1>
+		</header>
+		<div class="mui-content">
+			<form class="mui-input-group">
+				<div class="mui-input-row">
+					<label>头像</label>
+					<img id="touxiang" class="mui-image " src="../img/Collection.png" />
+					<input id="imgUrl" type="hidden" class="mui-input-clear" value="" />
+				</div>
+				<div class="mui-input-row mui-label">
+					<label>昵称</label>
+					<input type="text" id="name" class="mui-input-clear" placeholder="请输入用户名" :value="user_nickname">
+				</div>
+				<div class="mui-input-row">
+					<label>性别</label>
+					<input type="text" id='sex' class="mui-input-clear" placeholder="请选择性别" readonly :value="user_sex">
+				</div>
+				<div class="mui-input-row">
+					<label>生日</label>
+					<input type="text" id="birthday" class="mui-input-clear" placeholder="请选择出生日期" readonly :value="user_birthday">
+				</div>
+				<div class="mui-input-row">
+					<label>地址</label>
+					<input type="text" id="address" class="mui-input-clear" placeholder="请选择地址" readonly :value="user_address">
+				</div>
+				<div class="mui-input-row">
+					<label>个性签名</label>
+					<input type="text" id="signature" class="mui-input-clear" placeholder="请输入个性签名" :value="user_Signature">
+				</div>
+			</form>
+		</div>
+	</body>
+	<script>
+		/**
+		 * 拍照
+		 */
+		function appendByCamera() {
+			var camera = plus.camera.getCamera();
+			camera.captureImage(function(e) {
+				plus.io.resolveLocalFileSystemURL(e, function(entry) {
+					mui("#touxiang")[0].src = entry.toLocalURL();
+					createUpload(entry.toLocalURL());
+				}, function(e) {
+					mui.toast("读取拍照文件错误：" + e.message);
+				});
+			}, function(e) {
+				mui.toast('打开摄像头失败!!!');
+			}, {
+				filter: 'image'
+			});
+		}
+
+		/**
+		 * 从相册中选择
+		 */
+		function appendByGallery() {
+			plus.gallery.pick(function(path) {
+				mui("#touxiang")[0].src = path;
+				createUpload(path);
+			});
+		}
+		function createUpload(imgurl) {
+			//alert(imgurl);
+			var server = "http://192.168.43.146:8080/acceptPicture.html";
+			var wt = plus.nativeUI.showWaiting();
+			var task = plus.uploader.createUpload(server, {
+					method: "POST"
+				},
+				function(t, status) {
+					var responseText = t.responseText;
+					var json = eval('('+responseText+')');
+					mui("#imgUrl")[0].value = json.url;
+					// 上传完成
+					if (status == 200) {
+						alert(json.error);
+						wt.close();
+					} else {
+						alert(json.error);
+						wt.close();
+					}
+				}
+			);
+			task.addFile(imgurl, {key: "imgcongregation"});
+			task.start();
+		}
+
+
+		//页面加载完毕后执行
+		mui.plusReady(function() {
+			mui('div.mui-input-row').on('tap', '#touxiang', function() {
+				plus.nativeUI.actionSheet({
+					cancel: "取消",
+					buttons: [{
+							title: "拍照"
+						},
+						{
+							title: "从相册中选择"
+						}
+					]
+				}, function(e) {
+					//获得单击按钮的下标: 1 拍照  2 从相册中选择  
+					var index = e.index;
+					if (e.index == 1) {
+						appendByCamera();
+					} else if (e.index == 2) {
+						appendByGallery();
+					}
+				});
+			});
+		});
+		mui.plusReady(function() {
+			mui('div.mui-input-row').on('tap', 'input#sex', function() {
+				var picker = new mui.PopPicker();
+				picker.setData([{
+					value: '1',
+					text: '男'
+				}, {
+					value: '2',
+					text: '女'
+				}]);
+				picker.show(function(item) {
+					mui('#sex')[0].value = item[0].text;
+				});
+			});
+		});
+		mui.plusReady(function() {
+			mui('div.mui-input-row').on('tap', 'input#birthday', function() {
+				var dtpicker = new mui.DtPicker({
+					type: "date",
+					beginDate: new Date(2000, 04, 25),
+					endDate: new Date(2016, 04, 25),
+				})
+				dtpicker.setSelectedValue("2010-01-01");
+				dtpicker.show(function(e) {
+					mui('#birthday')[0].value = e.text;
+				})
+			});
+		});
+		mui.plusReady(function() {
+			mui('div.mui-input-row').on('tap', 'input#address', function() {
+				var picker = new mui.PopPicker({
+					layer: 2
+				});
+				picker.setData(citys);
+				picker.pickers[0].setSelectedIndex(1);
+				picker.pickers[1].setSelectedIndex(1);
+				picker.show(function(item) {
+					mui('#address')[0].value = item[0].text + " " + item[1].text;
+				})
+			});
+		});
+	</script>
+</html>

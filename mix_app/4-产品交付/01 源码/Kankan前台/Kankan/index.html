@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/index.css" rel="stylesheet" />
+		<script type="text/javascript" charset="utf-8">
+			//子网也样式
+			var styles = {
+				top: '0px',
+				bottom: '50px'
+			}
+			//子网页对象
+			var subpages1 = [{
+				url: 'index_hader.html',
+				id: 'index_hader.html',
+				styles: styles
+			}];
+
+			mui.init({
+				subpages: subpages1,
+				gestureConfig: {
+					tap: true, //默认为true
+					doubletap: true, //默认为false
+					longtap: true, //默认为false
+					swipe: true, //默认为true
+					drag: true, //默认为true
+					hold: false, //默认为false，不监听
+					release: false, //默认为false，不监听
+				}
+			});
+
+			mui.plusReady(function() {
+				mui(".mui-scroll-wrapper").on('tap', 'a.mui-control-item', function() {
+					var href = this.getAttribute("href");
+					if (href) {
+						var self = plus.webview.currentWebview(); //获取当前的web页面,即首页
+						var subExist = plus.webview.getWebviewById(href);
+						if (subExist) {
+							plus.webview.close(subExist);
+						}
+						//输出的web页面的数量
+						var sub = plus.webview.create(href, href, styles); //url,id,style样式
+						self.append(sub);
+					}
+				})
+				mui('footer.mui-bar-tab').on('tap', 'a.mui-tab-item', function() {
+					var href = this.getAttribute("href");
+					//mui.toast("123");
+					if (href) {
+						var self = plus.webview.currentWebview(); //获取当前的web页面,即首页
+						var subExist = plus.webview.getWebviewById(href);
+						if (subExist) {
+							plus.webview.close(subExist);
+						}
+						//输出的web页面的数量
+						var sub = plus.webview.create(href, href, styles); //url,id,style样式
+						self.append(sub);
+					}
+				});			
+			});
+		</script>
+	</head>
+
+	<body>
+		<footer class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item mui-active" href="index_hader.html">
+				<i class="mui-icon mui-icon-home"></i>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a id="rebo" class="mui-tab-item" href="hot/hot_main.html">
+				<i class="mui-icon mui-icon-pengyouquan"></i>
+				<span class="mui-tab-label">热播</span>
+			</a>
+			<a class="mui-tab-item"  href="vip/vip.html">
+				<i class="mui-icon mui-icon-spinner mui-spin"></i>
+				<span class="mui-tab-label">VIP</span>
+			</a>
+			<a class="mui-tab-item" href="myCenter/personal.html">
+				<i class="mui-icon mui-icon-locked"></i>
+				<span class="mui-tab-label">个人中心</span>
+			</a>
+		</footer>
+	</body>
+</html>

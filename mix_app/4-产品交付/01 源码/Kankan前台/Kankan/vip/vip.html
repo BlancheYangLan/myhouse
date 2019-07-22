@@ -1,0 +1,494 @@
+<!doctype html>
+
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/vipvideo_index.css" rel="stylesheet" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="../js/jquery-3.4.1.min.js"></script>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/vue.min.js"></script>
+		<script src="../js/jsencrypt.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.ready(function() {
+				var datas = localStorage.getItem('userInfo');
+				var user = JSON.parse(datas);
+				var username = user.userName;
+				var usertouxiang = user.userIcon;
+				var userN = document.getElementById("userName");
+				var type = user.vipType;
+				
+				if (type != 0)
+					userN.innerHTML = "尊贵的VIP会员" + username + ",您好";
+				else
+					userN.innerHTML = "用户" + username + ",您好";
+				var imgs = mui('.po img')[0]; //获得对象
+				imgs.src = usertouxiang;
+			})
+			mui.plusReady(function() {
+				var gallery = mui('.lb');
+				gallery.slider({
+					interval: 2000
+				});
+			})
+		</script>
+
+	</head>
+
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div class="mui-row">
+				<div class="mui-col-sm-2 mui-col-xs-2 po">
+					<a href="#"><img src="../img/ante_baby.jpg" style=" border-radius:200px; width: 35px; height: 35px; margin-top: 5px;margin-left: 10px;" /></a>
+				</div>
+				<div class="mui-col-sm-9 mui-col-xs-9">
+					<a href="#">
+						<div style="margin-top: 15px;color: burlywood;" id="userName">
+
+						</div>
+					</a>
+				</div>
+			</div>
+		</header>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider aa mui-fullscreen">
+				<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted" style="margin-left: -20px;width: 110%;">
+					<div class="mui-scroll n ">
+						<a class="mui-control-item nn mui-active" data-index="0">精选</a>
+						<a class="mui-control-item nn " data-index="1">电影</a>
+						<a class="mui-control-item nn " data-index="2">电视剧</a>
+						<a class="mui-control-item nn" data-index="3">综艺</a>
+						<a class="mui-control-item nn" data-index="4">动漫</a>
+						<a class="mui-control-item nn" data-index="5">纪录片</a>
+
+					</div>
+				</div>
+				<div class="mui-slider-group">
+					<div class="mui-slider-item mui-control-content mui-active" id="sis">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<div class="mui-card" style="height: 100px;">
+									<div class="mui-slider lb">
+										<div class="mui-slider-group mui-slider-loop lbzz ">
+											<!--支持循环，需要重复图片节点-->
+											<div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img v-bind:src="'https://192.168.43.157:1443'+sis[3]" /></a></div>
+											<div class="mui-slider-item lbz" v-for="sis in sis"><a href="#"><img v-bind:src="'https://192.168.43.157:1443'+sis.videolj" /></a>
+												<p class="name" hidden="hidden">{{sis.videoid}}</p>
+											</div>
+											<!--支持循环，需要重复图片节点-->
+											<div class="
+													 mui-slider-item mui-slider-item-duplicate"><a href="#"><img v-bind:src="'https://192.168.43.157:1443'+sis[0]" /></a></div>
+										</div>
+									</div>
+								</div>
+
+								<div class="mui-card">
+									<div class="mui-card-content">
+										<div style="padding-left: 10px;padding-top: 5px;">
+											<h4>精选</h4>
+										</div>
+										<ul class="mui-table-view mui-grid-view jx">
+											<li class="mui-table-view-cell mui-media mui-col-xs-6 jxz" v-for="jx in jx">
+												<p class="name" hidden="hidden">{{jx.videoid}}</p>
+												<a href="#">
+													<img class="mui-media-object" :src="'https://192.168.43.157:1443'+jx.videolj" style="height: 100px;">
+													<div class="mui-media-body">{{jx.videoname}}</div>
+												</a>
+											</li>
+
+										</ul>
+									</div>
+
+								</div>
+
+								<div class="mui-card" style="height: 280px;">
+									<div style="padding-left: 10px;padding-top: 10px;">
+										<h4>猜你在追</h4>
+									</div>
+									<div class="mui-card-content">
+										<div class="mui-card-content-inner">
+											<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted"
+											 style="height: 240px;margin-top: -10px;">
+												<div class="mui-scroll cnzz" style="height: 100%;margin-left: -10px;">
+													<div class="mui-control-item cnzzz" id="av" v-for="cnzz in cnzz">
+														<p class="name" hidden="hidden">{{cnzz.videoid}}</p>
+														<img :src="'https://192.168.43.157:1443'+cnzz.videolj" />
+														<h4>{{cnzz.videoname}}</h4>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+								<div class="mui-card zstj">
+									<div style="padding-left: 10px;padding-top: 10px;">
+										<h4>VIP专属推荐</h4>
+									</div>
+									<div class="mui-card-content zstjz" v-for="zstj in zstj">
+
+										<p class="name" hidden="hidden">{{zstj.videoid}}</p>
+										<img :src="'https://192.168.43.157:1443'+zstj.videolj" style="height: 200px;width: 100%;" />
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<div>
+
+									<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted"
+									 style="margin-left: -20px; width: 110%;">
+										<div class="mui-scroll w" id="hk">
+											<a class="mui-control-item m mui-active" data1="10">
+												综合排序
+											</a>
+											<a class="mui-control-item m" data1="11">
+												热播榜
+											</a>
+											<a class="mui-control-item m" data1="12">
+												新上线
+											</a>
+
+										</div>
+
+									</div>
+
+
+
+									<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted"
+									 style="margin-left: -20px; width: 110%;">
+										<div class="mui-scroll w1" id="hk">
+											<a class="mui-control-item m1 mui-active" data2="20">
+												全部地区
+											</a>
+											<a class="mui-control-item m1" data2="21">
+												内地
+											</a>
+											<a class="mui-control-item m1" data2="22">
+												香港
+											</a>
+											<a class="mui-control-item m1" data2="23">
+												韩国
+											</a>
+											<a class="mui-control-item m1" data2="24">
+												美国
+											</a>
+											<a class="mui-control-item m1" data2="25">
+												日本
+											</a>
+											<a class="mui-control-item m1" data2="26">
+												泰国
+											</a>
+											<a class="mui-control-item m1" data2="27">
+												台湾
+											</a>
+											<a class="mui-control-item m1" data2="28">
+												英国
+											</a>
+
+										</div>
+									</div>
+
+
+
+
+
+									<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted"
+									 style="margin-left: -20px; width: 110%;">
+										<div class="mui-scroll w2" id="hk">
+											<a class="mui-control-item m2 mui-active" data3="30">
+												全部类型
+											</a>
+											<a class="mui-control-item m2" data3="31">
+												喜剧
+											</a>
+											<a class="mui-control-item m2" data3="32">
+												爱情
+											</a>
+											<a class="mui-control-item m2" data3="33">
+												动作
+											</a>
+											<a class="mui-control-item m2" data3="34">
+												枪战
+											</a>
+											<a class="mui-control-item m2" data3="35">
+												犯罪
+											</a>
+											<a class="mui-control-item m2" data3="36">
+												惊悚
+											</a>
+											<a class="mui-control-item m2" data3="37">
+												恐怖
+											</a>
+											<a class="mui-control-item m2" data3="38">
+												悬疑
+											</a>
+											<a class="mui-control-item m2" data3="39">
+												奇幻
+											</a>
+											<a class="mui-control-item m2" data3="301">
+												魔幻
+											</a>
+											<a class="mui-control-item m2" data3="302">
+												科幻
+											</a>
+											<a class="mui-control-item m2" data3="303">
+												战争
+											</a>
+
+										</div>
+									</div>
+
+								</div>
+
+								<div id="fl">
+
+
+								</div>
+
+
+
+
+
+
+
+							</div>
+						</div>
+					</div>
+					<div class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								自行脑补页面
+							</div>
+						</div>
+					</div>
+					<div class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								自行脑补页面
+							</div>
+						</div>
+					</div>
+					<div class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								自行脑补页面
+							</div>
+						</div>
+					</div>
+					<div class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								自行脑补页面
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<script type="text/javascript">
+			var vue = new Vue({ //创建负责数据绑定的vue对象
+				el: "#sis",
+				data: {
+					sis: [],
+					jx: [],
+					cnzz: [],
+					zstj: []
+				}
+			})
+
+			mui.get('https://192.168.43.157:1443/indexjx.html', function(data) {
+				vue.jx = data.jx;
+				vue.sis = data.sis;
+
+			}, 'json');
+			mui.get('https://192.168.43.157:1443/cnzz.html', function(data) {
+				vue.cnzz = data.cnzz;
+
+			}, 'json');
+			mui.get('https://192.168.43.157:1443/zstj.html', function(data) {
+				vue.zstj = data.zstj;
+
+			}, 'json');
+
+
+
+			var da1 = "10";
+			var da2 = "20";
+			var da3 = "30";
+
+
+			mui('.mui-scroll-wrapper').scroll({
+				bounce: true,
+				indicators: true,
+				deceleration: mui.os.ios ? 0.003 : 0.0009,
+
+			});
+			mui('.n').on('tap', '.nn:not(.mui-active)', function() {
+				mui('.aa').slider().gotoItem(this.getAttribute('data-index'));
+
+			});
+
+			//综合排序
+			mui('.w').on('tap', '.m:not(.mui-active)', function() {
+				da1 = this.getAttribute('data1');
+
+				//$("#fl").text(da1 + da2 + da3);
+			});
+			//全部地区
+			mui('.w1').on('tap', '.m1:not(.mui-active)', function() {
+				da2 = this.getAttribute('data2');
+
+				//$("#fl").text(da1 + da2 + da3);
+			});
+			//全部类型
+			mui('.w2').on('tap', '.m2:not(.mui-active)', function() {
+				da3 = this.getAttribute('data3');
+
+				//$("#fl").text(da1 + da2 + da3);
+			});
+
+
+			mui('.mui-scroll-wrapper #hk').on('tap', '.mui-control-item', function() {
+
+				$("#fl").html(
+					'<div class="mui-content"><div class="mui-row"><ul class="mui-table-view mui-grid-view tcontent" ><li class="mui-table-view-cell mui-media mui-col-xs-4 li" v-for="voide in voide" ><a href="#"><img class="mui-media-object" :src="\'https://192.168.43.157:1443\'+voide.videolj" style="height:150px"><div class="mui-media-body">{{voide.videoname}}</div></a><p class="name" hidden="hidden">{{voide.videoid}}</p></li></ul></div></div>'
+				)
+
+
+
+
+				var vu = new Vue({ //创建负责数据绑定的vue对象
+					el: "#fl",
+					data: {
+						voide: []
+					}
+				})
+
+
+
+
+
+				if (da1 == "10" && da2 == "20" && da3 == "30") {
+					mui.get('https://192.168.43.157:1443/queryvideoall.html', function(data) {
+						vu.voide = data.voide;
+
+					}, 'json');
+				} else {
+					mui.get('https://192.168.43.157:1443/videocontroller.html', {
+						videopx: da1,
+						videodq: da2,
+						videolx: da3
+					}, function(data) {
+						vu.voide = data.voide;
+
+					}, 'json');
+				}
+
+				mui('.tcontent').on('tap', '.li', function() {
+					var count = $(this).find(".name").text();
+					var webview = mui.openWindow({
+						url: 'dy.html',
+						extras: {
+							name: count
+						}
+					});
+
+				});
+
+
+
+
+			});
+
+
+			mui.ready(function() {
+
+
+				$("#fl").html(
+					'<div ><div class="mui-card-content"><ul class="mui-table-view mui-grid-view tcontent" ><li class="mui-table-view-cell mui-media mui-col-xs-4 li" v-for="voide in voide" ><a href="#"><img class="mui-media-object" :src="\'https://192.168.43.157:1443\'+voide.videolj" style="height:150px"><div class="mui-media-body " >{{voide.videoname}}</div></a><p class="name" hidden="hidden">{{voide.videoid}}</p></li></ul></div></div>'
+				)
+
+
+				var vu = new Vue({ //创建负责数据绑定的vue对象
+					el: "#fl",
+					data: {
+						voide: []
+
+					}
+				})
+
+				mui.get('https://192.168.43.157:1443/queryvideoall.html', function(data) {
+					vu.voide = data.voide;
+
+				}, 'json');
+
+
+
+			})
+
+			mui.plusReady(function() {
+				mui('.tcontent').on('tap', '.li', function() {
+					var count = $(this).find(".name").text();
+					var webview = mui.openWindow({
+						url: 'dy.html',
+						extras: {
+							name: count
+						}
+					});
+				});
+			})
+			mui('.lbzz').on('tap', '.lbz', function() {
+				var count = $(this).find(".name").text();
+				var webview = mui.openWindow({
+					url: 'dy.html',
+					extras: {
+						name: count
+					}
+				});
+
+			});
+			mui('.jx').on('tap', '.jxz', function() {
+				var count = $(this).find(".name").text();
+				var webview = mui.openWindow({
+					url: 'dy.html',
+					extras: {
+						name: count
+					}
+				});
+
+			});
+			mui('.cnzz').on('tap', '.cnzzz', function() {
+				var count = $(this).find(".name").text();
+				var webview = mui.openWindow({
+					url: 'dy.html',
+					extras: {
+						name: count
+					}
+				});
+
+			});
+			mui('.zstj').on('tap', '.zstjz', function() {
+				var count = $(this).find(".name").text();
+				var webview = mui.openWindow({
+					url: 'dy.html',
+					extras: {
+						name: count
+					}
+				});
+
+			});
+		</script>
+	</body>
+</html>

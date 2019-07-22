@@ -1,0 +1,148 @@
+<!doctype html>
+
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/vipvideo_index.css" rel="stylesheet" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="../js/jquery-3.4.1.min.js"></script>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/vue.min.js"></script>
+		<script src="../js/jsencrypt.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.ready(function() {
+				var datas = localStorage.getItem('userInfo');
+				var user = JSON.parse(datas);
+				//alert(localStorage.getItem('userInfo'));
+				var viptype=user.vipType
+				$("#name").text(viptype);
+			
+				
+			})
+			mui.plusReady(function() {
+
+
+
+				var self = plus.webview.currentWebview();
+				var id = self.name;
+				var vu = new Vue({
+					el: "#bf",
+					data: {
+						voidebf: [],
+						wntj: []
+
+
+					}
+				})
+				mui.get('https://192.168.43.157:1443/videobf.html', {
+					videoid: id
+				}, function(data) {
+					vu.voidebf = data.voidebf;
+
+				}, 'json');
+				mui.get('https://192.168.43.157:1443/cnzz.html', function(data) {
+					vu.wntj = data.cnzz;
+				}, 'json');
+
+
+
+				mui('.hh').on('tap', '#wntj', function() {
+					var count = $(this).find(".name").text();
+					mui.get('https://192.168.43.157:1443/videobf.html', {
+						videoid: count
+					}, function(data) {
+						vu.voidebf = data.voidebf;
+
+
+					}, 'json');
+
+					mui.get('https://192.168.43.157:1443/cnzz.html', function(data) {
+						vu.wntj = data.cnzz;
+					}, 'json');
+
+
+				});
+
+			});
+		</script>
+	</head>
+	<body>
+		<p id="name" hidden="hidden"></p>
+		<div id="bf">
+			<div class="headDiv" v-for="voidebf in voidebf">
+
+				<video id="video" onplaying="myFunction()" :src="'https://192.168.43.157:1443'+voidebf.videosp" controls="controls"
+				 :poster="'https://192.168.43.157:1443'+voidebf.videolj" style=" object-fit: fill; height: 100%;width: 100%;"></video>
+				<ul class="mui-table-view" style="margin-top: -2%;">
+					<li class="mui-table-view-cell mui-collapse">
+						<a class="mui-navigate-right" href="#">{{voidebf.videoname}}</a>
+						<div class="mui-collapse-content">
+							<p>简介</p>
+							<p>{{voidebf.videojj}}</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+			<div style="padding-top: 63%; " class="hh">
+
+				<div style="margin-top: 3%;">为你推荐</div>
+				<div v-for="wntj in wntj" id="wntj" style="margin-top: 3%;">
+					<p class="name" hidden="hidden">{{wntj.videoid}}</p>
+					<div style="float: left;width: 45%;"><img :src="'https://192.168.43.157:1443'+wntj.videolj" style="width: 100%;height:100px;" /></div>
+					<div style="height: 100px;">
+						<p style="padding-top: 10%; color: #000000; padding-left: 50%;">{{wntj.videoname}}</p>
+						<p style="padding-left: 50%;">{{wntj.videojj}}</p>
+					</div>
+					<br />
+				</div>
+			</div>
+
+		</div>
+		<script>
+			function myFunction() {
+				
+				var x = $("#name").text(); //是否是会员 0:不是会员
+				var i = 1; //弹出一次
+				var myVid = document.getElementById("video");
+
+
+				myVid.ontimeupdate = function() {
+
+					my()
+				};
+
+				function my() {
+					if (x == 0)
+						if (myVid.currentTime >= 5)
+							if (i == 1) {
+								myVid.pause();
+								myVid.currentTime = 5;
+								mui.confirm('是否开通VIP', 'VIP', ['取消', '确认'], function(e) {
+									if (e.index == 1) {
+										var webview = mui.openWindow({
+											url: 'opening_members.html',
+
+										});
+									}
+								}, 'text')
+								i = 0;
+							}
+
+
+				}
+
+
+
+
+
+
+			}
+		</script>
+	</body>
+
+</html>

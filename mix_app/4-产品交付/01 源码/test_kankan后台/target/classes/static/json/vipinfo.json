@@ -1,0 +1,76 @@
+{
+	
+	"methodPayment":[{
+			"payIcon":"https://192.168.43.157:1443/img/voucherspay.svg",
+			"payValue":"vouchersPay",
+			"payText":"代金券支付"
+		},
+		{
+			"payIcon":"https://192.168.43.157:1443/img/alipay.svg",
+			"payValue":"alipay",
+			"payText":"支付宝支付"
+		},
+		{
+			"payIcon":"https://192.168.43.157:1443/img/wechatpay.svg",
+			"payValue":"wechatpay",
+			"payText":"微信支付"
+		},
+		{
+			"payIcon":"https://192.168.43.157:1443/img/cardpay.svg",
+			"payValue":"cardpay",
+			"payText":"银行卡支付"
+		}],
+	
+	
+	"privileges":[{
+			"pIcon":"https://192.168.43.157:1443/img/tap-ad.svg",
+			"pName":"跳广告"
+		},
+		{
+			"pIcon":"https://192.168.43.157:1443/img/newmovie.svg",
+			"pName":"院线新片"
+		},
+		{
+			"pIcon":"https://192.168.43.157:1443/img/hotmovie.svg",
+			"pName":"热剧抢先看"
+		},
+		{
+			"pIcon":"https://192.168.43.157:1443/img/zy.svg",
+			"pName":"独家综艺"
+		},
+		{
+			"pIcon":"https://192.168.43.157:1443/img/HD.svg",
+			"pName":"蓝光1080p"
+		},
+		{
+			"pIcon":"https://192.168.43.157:1443/img/db.svg",
+			"pName":"杜比全景声"
+		},
+		{
+			"pIcon":"https://192.168.43.157:1443/img/start.svg",
+			"pName":"明星见面会"
+		},
+		{
+			"pIcon":"https://192.168.43.157:1443/img/user-v.svg",
+			"pName":"年卡权限升级"
+		}],
+	
+	
+	"agreement":[{
+			"aName":"自动续费服务协议",
+			"url":"https://192.168.43.157:1443/protocols/html1.html"
+		},
+		{
+			"aName":"隐私政策",
+			"url":"https://192.168.43.157:1443/protocols/html2.html"
+		},
+		{
+			"aName":"客服与反馈",
+			"url":"https://192.168.43.157:1443/protocols/html3.html"
+		},
+		{
+			"aName":"常见问题",
+			"url":"https://192.168.43.157:1443/protocols/html4.html"
+		}]
+	
+}

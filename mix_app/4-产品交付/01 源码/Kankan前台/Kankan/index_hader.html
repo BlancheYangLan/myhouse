@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/index.css" rel="stylesheet" />
+		<script type="text/javascript" charset="utf-8">
+			//子网也样式
+			var styles = {
+				top: '50px',
+				bottom: '0px'
+			}
+			//子网页对象
+			var subpages1 = [{
+				url: 'index_sub.html',
+				id: 'index_sub.html',
+				styles: styles
+			}];
+
+			mui.init({
+				subpages: subpages1,
+				gestureConfig: {
+					tap: true, //默认为true
+					doubletap: true, //默认为false
+					longtap: true, //默认为false
+					swipe: true, //默认为true
+					drag: true, //默认为true
+					hold: false, //默认为false，不监听
+					release: false, //默认为false，不监听
+				}
+			});
+
+			mui.plusReady(function() {
+				mui(".mui-scroll-wrapper").on('tap', 'a.mui-control-item', function() {
+					var href = this.getAttribute("href");
+					if (href) {
+						var self = plus.webview.currentWebview(); //获取当前的web页面,即首页
+						var subExist = plus.webview.getWebviewById(href);
+						if (subExist) {
+							plus.webview.close(subExist);
+						}
+						//输出的web页面的数量
+						var sub = plus.webview.create(href, href, styles); //url,id,style样式
+						self.append(sub);
+					}
+				})
+				mui('footer.mui-bar-tab').on('tap', 'a.mui-tab-item', function() {
+					var href = this.getAttribute("href");
+					//mui.toast("123");
+					if (href) {
+						var self = plus.webview.currentWebview(); //获取当前的web页面,即首页
+						var subExist = plus.webview.getWebviewById(href);
+						if (subExist) {
+							plus.webview.close(subExist);
+						}
+						//输出的web页面的数量
+						var sub = plus.webview.create(href, href, styles); //url,id,style样式
+						self.append(sub);
+					}
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+				<div class="mui-scroll">
+					<a href="index_sub.html" class="mui-control-item mui-active">
+						精选
+					</a>
+					<a href="hot/hot_main.html" class="mui-control-item">
+						爱看
+					</a>
+					<a href="TV_serles.html" class="mui-control-item">
+						电视剧
+					</a>
+					<a href="animation.html" class="mui-control-item">
+						电影
+					</a>
+					<a class="mui-control-item">
+						综艺
+					</a>
+					<a class="mui-control-item">
+						少儿
+					</a>
+					<a class="mui-control-item">
+						动漫
+					</a>
+					<a class="mui-control-item">
+						NBA
+					</a>
+					<a class="mui-control-item">
+						纪录片
+					</a>
+				</div>
+			</div>
+		</header>
+	</body>
+</html>

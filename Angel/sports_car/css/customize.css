@@ -1,0 +1,92 @@
+body{
+	background-color:#EAEAEA;
+	margin:0px;
+}
+
+div{
+	margin:0px;
+}
+
+.mid,.mid2,h1{
+	color: white;
+}
+
+h1,h2,h3{
+	font-style: italic;
+}
+.font_size{
+	font-size: 50px;
+}
+h4{
+	font-size: 25px;
+}
+
+#mid_style1{
+	height:980px;
+	background-color:#FFF;
+	position:relative;
+	top: 0px;
+}
+#mid_style_left1{
+   position:relative;
+   left:3%;
+}
+#mid_style_right1{
+   position:relative;
+   top: 50px;
+   left:3%; 
+}
+
+#zedie1{
+   position:relative;
+   width: 950px;
+   top:200px;
+   right: 550px;
+   margin: 0px;
+}
+ 
+#mid_style2{
+	height:500px;
+	background-color:#FFF;
+	position:relative;
+	top:0px;
+	background-image: url(../../img/fq_img/customize_made3.jpg);
+	background-size: 100%;
+}
+#mid_style_left2{
+   position:relative;
+   left:3%;
+}
+#mid_style_right2{
+   position:relative;
+   top: 50px;
+   left:3%; 
+}
+#mid_style3{
+	height:500px;
+	background-color:#FFF;
+	position:relative;
+	top: 0px;
+	background-color: white;
+	background-size: 100%;
+}
+#mid_style4{
+	position: relative;
+	top: 50px;
+	background-color: #EAEAEA;
+}
+#mid_style_left3{
+   position:relative;
+   top: 28px;
+   left:10%;
+   /*width: 83%;*/
+}
+#mid_style_right3{
+   position:relative;
+   top: 0px;
+/*   left:3%; */
+}
+/*#footer{
+	position: relative;
+	top: 0px;
+}*/

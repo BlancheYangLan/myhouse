@@ -1,0 +1,14 @@
+/* CSS Document */
+table{
+	table-layout:fixed ;
+	position:absolute;
+	top:10px;
+}
+td{
+ word-wrap:break-word;
+ overflow:hidden; 
+ white-space:nowrap;
+ text-overflow:ellipsis;
+ width:100px;
+ height:50px;
+}

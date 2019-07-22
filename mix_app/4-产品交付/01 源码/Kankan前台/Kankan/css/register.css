@@ -1,0 +1,27 @@
+body{background-color: #FFFFFF;}
+/* 头部 */
+.header{   
+	width: 100%;
+	height: 60px;
+	background-color: #4CD964;
+}
+.header a{    /* 图标 */
+	position: relative;
+	top: 8px;
+	color: #000000;
+}
+.header h1{    /* 文字 */
+	padding-top: 9px;
+	font-size: 20px;
+}
+.a input{
+	border-bottom-color: #777777;
+	border-top:none;
+	border-left: none;
+	border-right: none;
+}
+.form{padding-top: 150px;width:100%;text-align:center;background-color: #FFFFFF;}
+.aa:hover{border-bottom-color: #4CD964;}
+.mui-weizhi{padding-top: 280px;width:100%;text-align:center}
+.color{color: #4CD964;height: 80px;width: 80px;}
+.mui-btn{margin-top: 50px;}     

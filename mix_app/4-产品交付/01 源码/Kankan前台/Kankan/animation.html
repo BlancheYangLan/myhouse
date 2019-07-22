@@ -1,0 +1,217 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<link href="css/animation.css" rel="stylesheet" />
+		<script src="js/mui.js"></script>
+		<script src="js/vue.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				gestureConfig: {
+					tap: true, //默认为true
+					doubletap: true, //默认为false
+					longtap: true, //默认为false
+					swipe: true, //默认为true
+					drag: true, //默认为true
+					hold: false, //默认为false，不监听
+					release: false //默认为false，不监听
+				}
+			});
+			mui.plusReady(function() {
+				var gallery = mui('.mui-slider');
+				gallery.slider({
+					interval: 3000 //自动轮播周期，若为0则不自动播放，默认为0；
+				});
+				//轮播点击跳转播放界面
+				mui('div.mui-slider-loop').on('tap', 'div.mui-slider-item', function() {
+					var ids = this.getAttribute("id");
+					var url = this.getAttribute("url")
+					if (ids) {
+						mui.openWindow({
+							url: 'ziye/movieScreening.html',
+							extras: {
+								ids: ids,
+								url: url
+							}
+						});
+					}
+				});
+				//下面点击跳转播放界面
+				mui('div.mui-movie-row').on('tap', 'li.mui-movie-row-item', function() {
+					var ids = this.getAttribute("id");
+					var url = this.getAttribute("url")
+					if (ids) {
+						mui.openWindow({
+							url: 'ziye/movieScreening.html',
+							extras: {
+								ids: ids,
+								url: url
+							}
+						});
+					}
+				});
+				//
+
+
+				mui('div.mui-scroll').on('tap', 'li.mui-control-item', function() {
+					var ids = this.getAttribute("id");
+					var url = this.getAttribute("url")
+					if (ids) {
+						mui.openWindow({
+							url: 'ziye/movieScreening.html',
+							extras: {
+								ids: ids,
+								url: url
+							}
+						});
+					}
+				});
+			})
+		</script>
+	</head>
+
+	<body>
+		<nav class="nav-top">
+			<div class="mui-input-row mui-search">
+				<input type="search" placeholder="搜索" class="mui-input-clear" />
+			</div>
+		</nav>
+		<div id="hotmoive" class="mui-content">
+			<div class="mui-slider">
+				<div class="mui-slider-group mui-slider-loop">
+					<div id="last_carouselId" class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#" >
+							<img :src="last_carouselImg" />
+						</a>
+						<div class="mui-slider-item_wz">
+							<p>{{last_carouselName}}</p>
+						</div>
+					</div>
+					<div :id="carousel.movieid" :url ="carousel.movieurl" class="mui-slider-item" v-for="carousel in carousels">
+						<a href="#">
+							<img :src="carousel.moviepicture" />
+							
+						</a>
+						<div class="mui-slider-item_wz">
+							<p>{{carousel.moviename}}</p>
+						</div>
+					</div>
+					<div id="first_carouselId" class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<img :src="first_carouselImg" />
+						</a>
+						<div class="mui-slider-item_wz">
+							<p>{{first_carouselName}}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="mui-movie">
+				<h3>每日推荐</h3>
+				<div class="mui-movie-div">
+					<a>更多...</a>
+				</div>
+				<div class="mui-movie-row">
+					<li :id="daily.movieid" :url ="daily.movieurl" class="mui-movie-row-item" v-for="daily in recommended_dailys">
+						<img :src="daily.moviepicture" />
+						<p>{{daily.moviename}}</p>
+					</li>
+				</div>
+			</div>
+			<div class="mui-movie">
+				<h3>每日热片</h3>
+				<div class="mui-movie-div">
+					<a>更多...</a>
+				</div>
+				<div class="mui-movie-row">
+					<li :id="hot_film.movieid" :url ="hot_film.movieurl" class="mui-movie-row-item" v-for="hot_film in hot_films">
+						<img :src="hot_film.moviepicture" />
+						<p>{{hot_film.moviename}}</p>
+					</li>
+				</div>
+			</div>
+			<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+				<h3>我的个人推荐</h3>
+				<div class="mui-scroll">
+					<li :id="Personal_recommendation.movieid" :url ="Personal_recommendation.movieurl" class="mui-control-item" v-for="Personal_recommendation in Personal_recommendations">
+						<img :src="Personal_recommendation.moviepicture" />
+						<p>{{Personal_recommendation.moviename}}</p>
+					</li>
+				</div>
+			</div>
+			<div class="mui-movie">
+				<h3>网络大电影</h3>
+				<div class="mui-movie-div">
+					<a>更多...</a>
+				</div>
+				<div class="mui-movie-slider">
+					<li class="mui-movie-row-item">
+						<img src="https://192.168.43.157:1443/img/yp1.jpg" />
+						<p>一个母亲的复仇</p>
+					</li>
+				</div>
+				<div class="mui-movie-row">
+					<li :id="big_movie.movieid" :url ="big_movie.movieurl" class="mui-movie-row-item" v-for="big_movie in big_movies">
+						<img :src="big_movie.moviepicture" />
+						<p>{{big_movie.moviename}}</p>
+					</li>
+				</div>
+			</div>
+
+			<div class="mui-movie">
+				<h3>最新影片</h3>
+				<div class="mui-movie-row">
+					<li :id="Latest_movie.movieid" :url ="Latest_movie" class="mui-movie-row-item" v-for="Latest_movie in Latest_movies">
+						<img :src="Latest_movie.moviepicture" />
+						<p>{{Latest_movie.moviename}}</p>
+					</li>
+				</div>
+			</div>
+			<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+				<h3>青春实力派</h3>
+				<div class="mui-scroll">
+					<li :id="Youth_movie.movieid" :url ="Youth_movie.movieurl" class="mui-control-item mui-active" v-for="Youth_movie in Youth_movies">
+						<img :src="Youth_movie.moviepicture" />
+						<p>{{Youth_movie.moviename}}</p>
+					</li>
+				</div>
+			</div>
+		</div>
+		<script>
+			var vue = new Vue({
+				el: '#hotmoive',
+				data: {
+					recommended_dailys: [],
+					carousels: [],
+					hot_films: [],
+					big_movies: [],
+					Personal_recommendations: [],
+					Latest_movies: [],
+					Youth_movies: [],
+					first_carouselImg: '',
+					first_carouselName: '',
+					last_carouselImg: '',
+					last_carouselName: ''
+				}
+			})
+			mui.get("https://192.168.43.157:1443/movieshow.html", function(data) {
+				vue.recommended_dailys = data.recommended_daily;
+				vue.carousels = data.carousel;
+				vue.hot_films = data.hot_film;
+				vue.big_movies = data.big_movie;
+				vue.Personal_recommendations = data.Personal_recommendation;
+				vue.Latest_movies = data.Latest_movie;
+				vue.Youth_movies = data.Youth_movie;
+				vue.first_carouselImg = vue.carousels[0].moviepicture;
+				vue.first_carouselName = vue.carousels[0].moviename;
+				vue.last_carouselImg = vue.carousels[vue.carousels.length - 1].moviepicture;
+				vue.last_carouselName = vue.carousels[vue.carousels.length - 1].moviepicture;
+			}, 'json');
+		</script>
+	</body>
+
+</html>

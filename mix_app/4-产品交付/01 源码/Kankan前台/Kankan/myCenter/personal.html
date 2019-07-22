@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!-- 
+		 response.setHeader("Access-Control-Allow-Origin", "");
+         response.setHeader("Access-Control-Allow-Headers", "X-Requested-With");
+         response.setHeader("Cache-Control", "no-cache");
+		 -->
+		<meta http-equiv="Access-Control-Allow-Origin" content="">
+		<meta http-equiv="Access-Control-Allow-Headers" content="X-Requested-With">
+		<meta http-equiv="Cache-Control" content="no-cache">
+		<!-- <meta http-equiv="content-security-policy">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black"> -->
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.css" rel="stylesheet" />
+		<link href="../css/personal.css" rel="stylesheet" />
+		<script src="../js/jquery.js"></script>
+		<script src="../js/vue.min.js"></script>
+		<script src="../js/mui.js"></script>
+		<script type="text/javascript">
+			window.addEventListener('doit', function(e) {
+				//获取参数值
+				var imagePath = e.detail.imagePath;
+				if (imagePath == '1') {
+					location.reload();
+				}
+			});
+
+			mui.ready(function() {
+				var datas = localStorage.getItem('userInfo');
+				var user = JSON.parse(datas);
+				var username = user.userName;
+				var usertouxiang = user.userIcon;
+				var userN = document.getElementById("userName");
+				userN.innerHTML = username;
+				var imgs = mui('.head-sculpture img')[0]; //获得对象
+				imgs.src = usertouxiang;
+			})
+			mui.init({
+				gestureConfig: {
+					tap: true, //默认为true
+					doubletap: true, //默认为false
+					longtap: true, //默认为false
+					swipe: true, //默认为true
+					drag: true, //默认为true
+					hold: false, //默认为false，不监听
+					release: false //默认为false，不监听
+				}
+			});
+
+			function updataLoginState() {
+				//alert(localStorage.getItem('userInfo'));
+				var datas = localStorage.getItem('userInfo');
+				var user = JSON.parse(datas);
+				var username = user.userName;
+				var usertouxiang = user.userIcon;
+				var userN = document.getElementById("userName");
+				userN.innerHTML = username;
+				var imgs = mui('.head-sculpture img')[0]; //获得对象
+				imgs.src = usertouxiang;
+			}
+
+			mui.plusReady(function() {
+				var self = plus.webview.currentWebview();
+				var id = self.name;
+				mui(".head-sculpture").on('tap', '.login', function() {
+					var suser = $("#userName").text();
+					if (suser == "未登录") {
+						mui.openWindow({
+							url: '../register_login/login.html'
+						});
+					} else {
+						mui.openWindow({
+							url: 'edit_information.html'
+						});
+
+					}
+				});
+				mui(".huiyuanss").on('tap', '.huiyuan', function() {
+					var suser = $("#userName").text();
+					if (suser != "未登录") {
+						mui.openWindow({
+							url: '../vip/opening_members.html' 
+						})
+					}
+				})
+
+			});
+		</script>
+	</head>
+
+	<body>
+		<div class="mui-body">
+			<div class="head-sculpture">
+				<!-- 头像栏 -->
+				<img class="login" src="../img/moren.png" />
+				<h4 id="userName" class="login userName" style="color: #000000;">未登录</h4>
+			</div>
+			<div class="member">
+				<!-- 会员栏 -->
+				<div class="huiyuanss">
+					<h5 class="huiyuan">开通VIP会员 > </h5>
+					<h6 class="huiyuan">开通VIP，看大片…</h6>
+				</div>
+			</div>
+			<div class="lattice" id="lattices">
+				<!-- 九宫格 -->
+				<li class="lattice-itm collItem">
+					<a href="#"><img src="../img/Collection.png" />
+						<p class="wit">我的收藏</p>
+					</a>
+				</li>
+				<li class="lattice-itm recoItem">
+					<a href="#"><img src="../img/record.png" />
+						<p class="wit ">观看记录</p>
+					</a>
+				</li>
+				<li class="lattice-itm downItem">
+					<a href="#"><img src="../img/download.png" />
+						<p class="wit ">我的下载</p>
+					</a>
+				</li>
+				<li class="lattice-itm skinItem">
+					<a href="#"><img src="../img/skin.png" />
+						<p class="wit ">主题皮肤</p>
+					</a>
+				</li>
+				<li class="lattice-itm opinItem">
+					<a href="#"><img src="../img/feedback.png" />
+						<p class="wit ">意见反馈</p>
+					</a>
+				</li>
+				<li class="lattice-itm helpItem">
+					<a href="#"><img src="../img/help.png" />
+						<p class="wit ">帮助</p>
+				</li>
+				<li class="lattice-itm setupItem">
+					<a href="#"><img src="../img/install.png" />
+						<p class="wit ">设置</p>
+					</a>
+				</li>
+			</div>
+			<div class="about">
+				<p><a class="editItem" href="#" style="color: #000000;">个人信息</a></p>
+			</div>
+			<div class="interval">
+			</div>
+			<div class="about">
+				<p><a class="aboutItem" href="#" style="color: #000000;">关于我们</a></p>
+			</div>
+			<div class="edition">
+				<p>版本号9.0.1</p>
+			</div>
+		</div>
+	</body>
+	<script>
+		mui.plusReady(function() {
+
+
+			mui(".lattice").on('tap', 'li.collItem', function() { //我的收藏
+				mui.openWindow({
+					url: 'collection.html'
+				});
+			});
+			mui(".lattice").on('tap', 'li.recoItem', function() { //观看记录
+				mui.openWindow({
+					url: 'record.html'
+				});
+			});
+			mui(".lattice").on('tap', 'li.downItem', function() { //我的下载
+				mui.openWindow({
+					url: 'download.html'
+				});
+			});
+			mui(".lattice").on('tap', 'li.skinItem', function() { //主题皮肤
+				mui.openWindow({
+					url: 'skin.html'
+				});
+			});
+			mui(".lattice").on('tap', 'li.opinItem', function() { //意见反馈
+				mui.openWindow({
+					url: 'opinion.html'
+				});
+			});
+			mui(".lattice").on('tap', 'li.helpItem', function() { //帮助
+				mui.openWindow({
+					url: 'help.html'
+				});
+			});
+			mui(".lattice").on('tap', 'li.setupItem', function() { //设置
+				mui.openWindow({
+					url: 'Setup.html',
+				});
+			});
+			mui(".about").on('tap', 'a.editItem', function() { //个人信息
+				mui.openWindow({
+					url: 'edit_information.html'
+				});
+			});
+			mui(".about").on('tap', 'a.aboutItem', function() { //关于我们
+				mui.openWindow({
+					url: 'aboutwe.html'
+				});
+			});
+		});
+	</script>
+</html>

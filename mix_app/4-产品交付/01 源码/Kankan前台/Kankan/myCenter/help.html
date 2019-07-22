@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.css" rel="stylesheet" />
+		<link href="../css/help.css" rel="stylesheet"/>
+		<script src="../js/mui.js"></script>
+		<script src="../js/vue.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function(){
+				mui('.mui-bar-nav').on('tap', 'a.mui-icon-left-nav', function() {
+					mui.back();
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div class="mui-bar mui-bar-nav mui-bar-nav-bg header">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" style="font-size: 28px;"></a>
+			<h1 class="mui-title">帮助</h1>
+		</div>
+		<div class="problem">
+			<p>常见问题</p>
+		</div>
+		<div class="information" id="information">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell mui-collapse" v-for="information in information">
+					<a class="mui-navigate-right alias" href="#">{{information.title}}</a>
+					<div class="mui-collapse-content content">
+						<p>{{information.content1}}</p>
+						<p>{{information.content2}}</p>
+						<p>{{information.content3}}</p>
+						<p>{{information.content4}}</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+	</body>
+	<script>
+		var vue = new Vue({ //创建负责数据绑定的vue对象
+			el: "#information",
+			data: {
+				information: []
+			}
+		})
+		mui.get('https://192.168.43.157:1443/json/help.json', function(data) {
+			vue.information = data.information;
+		}, 'json');
+	</script>
+</html>

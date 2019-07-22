@@ -1,0 +1,44 @@
+{
+	"hotMovies": [{
+		"videourl": "https://192.168.43.157:1443/video/hot_water.mp4",
+		"posterurl": "https://192.168.43.157:1443/img/hot_wanxia.jpg",
+		"posterms":"世界最深的湖-贝加尔湖世界最深的湖-贝加尔湖贝加尔湖",
+		"witerul": "https://192.168.43.157:1443/img/hot_huo2.png",
+		"witename": "一条鱼摆摆",
+		"zannum": "123",
+		"likenum": "123456"
+	},
+	{
+		"videourl": "https://192.168.43.157:1443/video/hot_fj.mp4",
+		"posterurl": "https://192.168.43.157:1443/img/hot_xk.jpg",
+		"posterms":"即使跨过千山万水我依然不会放弃，我想知道'你的名字'",
+		"witerul": "https://192.168.43.157:1443/img/test.jpg",
+		"witename": "两条鱼摆摆",
+		"zannum": "2223",
+		"likenum": "199456"
+	},{
+		"videourl": "https://192.168.43.157:1443/video/hot_starmovie.mp4",
+		"posterurl": "https://192.168.43.157:1443/img/hot_nengya.jpg",
+		"posterms":"阳春三月下，我家门前第一珠破土而出的生命",
+		"witerul": "https://192.168.43.157:1443/img/test.jpg",
+		"witename": "三条鱼摆摆",
+		"zannum": "4568",
+		"likenum": "566456"
+	},{
+		"videourl": "https://192.168.43.157:1443/video/hot_starmovie.mp4",
+		"posterurl": "https://192.168.43.157:1443/img/hot_xueshan.jpg",
+		"posterms":"玉龙雪山景区位于云南省丽江市玉龙纳西族自治县境内，国家5A级景区",
+		"witerul": "https://192.168.43.157:1443/img/test.jpg",
+		"witename": "四条鱼摆摆",
+		"zannum": "4776",
+		"likenum": "556456"
+	},{
+		"videourl": "https://192.168.43.157:1443/video/hot_starmovie.mp4",
+		"posterurl": "https://192.168.43.157:1443/img/hot_xingkong.JPG",
+		"posterms":"离家几年，见过了外面的千山万水，还是觉得家乡的星星漂亮",
+		"witerul": "https://192.168.43.157:1443/img/test.jpg",
+		"witename": "五条鱼摆摆",
+		"zannum": "5799",
+		"likenum": "645456"
+	}]
+}

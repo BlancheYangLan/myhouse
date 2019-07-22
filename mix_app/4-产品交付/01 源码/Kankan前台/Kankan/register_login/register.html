@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script src="../js/mui.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/register.css" rel="stylesheet" />
+		<script src="../js/vue.min.js" type="text/javascript" charset="utf-8"></script>
+
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			mui.plusReady(function() {
+				mui('.mui-bar-nav').on('tap', 'a.mui-icon-left-nav', function() {
+					mui.back();
+				});
+				mui('.mui-button-row').on('tap', '.zhuce', function() {
+					var nameIme = mui('.nameIme')[0].value;
+					var phoneIme = mui('.phoneIme')[0].value;
+					var passIme = mui('.passIme')[0].value;
+					var passImes = mui('.passImes')[0].value;
+					if (passIme == passImes) {
+						mui.post('https://192.168.43.157:1443/registerss.html', //访问远程服务接口
+							{
+								nameIme: nameIme,
+								phoneIme: phoneIme,
+								passIme: passIme,
+							},
+							function(data) {
+								var success = data.success;
+								if (success) {
+									mui.toast(data.error);
+								} else {
+									mui.back();
+									mui.toast(data.error);
+								}
+							}, 'json');
+					} else {
+						alert("两次密码不相同！")
+					}
+				})
+			});
+		</script>
+	</head>
+	<body>
+		<div class="mui-bar mui-bar-nav mui-bar-nav-bg header">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left" style="font-size: 28px;"></a>
+			<h1 class="mui-title">注册</h1>
+		</div>
+		<form class="form">
+			<span class="mui-icon mui-icon-compose a">
+				<input type="text" class="aa nameIme" id="nameIme" style="width: 200px;" placeholder="用户名">
+			</span><br />
+			<span class="mui-icon mui-icon-compose a">
+				<input type="text" onclick="K()" class="aa phoneIme" id="phoneIme" style="width: 200px;" placeholder="请输入电话号码">
+			</span><br />
+			<span class="mui-icon mui-icon-locked a">
+				<input type="password" onclick="C()" class="aa passIme" id="passIme" style="width: 200px;" placeholder="请输入密码">
+			</span><br />
+			<span class="mui-icon mui-icon-locked a">
+				<input type="password" onclick="S()" class="aa passImes" style="width: 200px;" placeholder="请再次输入密码">
+			</span><br />
+			<div class="mui-button-row">
+				<a href="#">
+					<button type="button" class="mui-btn mui-btn-green zhuce">确认注册</button>
+				</a>
+			</div>
+		</form>
+		</div>
+	</body>
+	<script language="JavaScript">
+		function C() {
+			var b = document.getElementById("phoneIme")
+			var s = /^1[3|5|7][0-9]\d{8}/
+			if (s.test(b.value) == false) {
+				b.value = ""
+				alert("电话输入有误！")
+			}
+		}
+		function S(){
+			var dd = document.getElementById("passIme")
+			if (dd.value == "") {
+				alert("密码不能为空！")
+			} 
+		}
+		function K(){
+			var Na = document.getElementById("nameIme")
+			if (Na.value == "") {
+				alert("用户名不能为空！")
+			} 
+		}
+	</script>
+
+</html>

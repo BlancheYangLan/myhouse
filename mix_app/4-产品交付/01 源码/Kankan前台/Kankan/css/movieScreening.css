@@ -1,0 +1,41 @@
+.mui-content .mui-video{
+	position: relative;
+	width: 100%;
+	/* height: 400px; */
+	background-color:#FAFAFA;
+}
+.mui-content .mui-video video{
+	height: 100%;
+	width: 100%;
+}
+.mui-content .mui-return{
+	position: relative;
+	height: 30px;
+	margin-top: -30px;
+}
+.mui-content .mui-return span{
+	position: absolute;
+	font-size: 24px;
+	font-weight: bold;
+	color: white;
+	margin-top: -170px;
+	margin-left: 10px;
+}
+.mui-content .mui-video-name,.mui-content .mui-video-content,.mui-content .mui-video-director,.mui-content .mui-video-introduction{
+	margin-top: 20px;
+	margin-left: 20px;
+}
+.mui-content .mui-video-name span{
+	font-size: 24px;
+}
+.mui-content .mui-video-content span{
+	font-size: 20px;
+	margin-right: 10px;
+}
+.mui-content .mui-video-director span{
+	font-size: 20px;
+	margin-right: 20px;
+}
+.mui-content .mui-video-introduction span#introduction_1{
+	font-size: 18px;
+}

@@ -1,0 +1,161 @@
+*{
+	padding: 0px;
+	margin: 0px;
+}
+.user-info,.select_area,.method-payment,.privilegeds,.menuOptions {
+	position: relative;
+	width: 100%;
+	min-width: 300px;
+	margin-top: 2px;
+	background-color: #FFFFFF;
+	border-radius: 4px;
+	box-shadow: 0px 2px 6px #DDDDDD;
+	color: #555555;
+	font-size: 15px;
+}
+
+a{
+	color: #ACACB4;
+	font-size: 14px;
+}
+
+.user-info {
+	height: 85px;
+	line-height: 85px;
+	font-size: 18px;
+}
+
+.top-head {
+	width: 100%;
+	height: 3px;
+}
+
+.info-body {
+	position: relative;
+	height: 60px;
+	width: 60%;
+	float: left;
+	margin-left: 15px;
+	line-height: 15px;
+	margin-top: 20px;
+}
+
+.headPortrait {
+	position: relative;
+	width: 65px;
+	height: 65px;
+	border: solid 1px #AAAAAA;
+	border-radius: 100%;
+	float: left;
+	margin-left: 20px;
+	margin-top: 8px;
+}
+.method-payment {}
+
+.privilegeds {}
+
+.mui-select-row, .privilegeds-row {
+	position: relative;
+	width: 95%;
+	min-width: 300px;
+	margin: 8px 15px;
+	display: flex;/*  */
+	flex-wrap: wrap;/* 自动换行 */
+	justify-content: space-between;/* 自动填充*/
+}
+/* ------价格块样式--------- */
+.select_area .mui-select-row .mui-select-item {
+	list-style-type: none;
+	width: 98px;
+	height: 140px;
+	text-align: center;
+	border: solid 1px #AAAAAA;
+	border-radius: 5px;
+	margin-top: 5px;
+}
+/* --------价格块样式----------- */
+.select_hover {
+	border: solid 1px #EC971F !important;
+	background-color: #ffffb3;
+	/* box-shadow: 0px 2px 6px wheat; */
+}
+
+.privilegeds .privilegeds-row .privilegeds-item {
+	list-style-type: none;
+	text-align: center;
+	width: 85px;
+	margin-top: 5px;
+}
+
+.mui-select-row .mui-input-row{
+	display: inline;
+	margin-left: -16px;
+}
+
+.play-tiem {
+	display: flex;
+	padding: 10px 0;
+	position: relative;
+	-webkit-box-align: center;
+	height: 50px;
+	align-items: center;
+}
+
+.flex-img {
+	width: 30px;
+	height: 30px;
+	margin-left: 20px;
+}
+
+.flex-box {
+	margin-left: 5px;
+	flex: 1;
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: 0%;
+	min-width: 0;
+	font-size: 12px;
+}
+
+.input-item {
+	margin-top: -18px;
+	float: right;
+}
+
+footer {
+	border-style: none;
+	text-align: center;
+	background-color: #FFFFFF;
+}
+
+.footer-top {
+	width: 100%;
+	height: 70px;
+}
+
+.confirmPayment {
+	float: right;
+	width: 28%;
+	height:50px;
+	font-size: 18px;
+	background-color: #F0AD4E;
+	border-radius: 3px;
+}
+
+.consent_box{
+	float: left;
+	margin-top: 13px;
+	margin-left: 10px;
+	font-size: 12px;
+}
+
+.prices{
+	float: left;
+	font-size:16px;
+	margin-top: 13px;
+	margin-left: 4%;
+}
+
+.price{
+	font-size: 20px;
+}

@@ -1,0 +1,41 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+html,body{
+	overflow-y:hidden;
+	height: 100%;;
+	width: 100%;
+}
+.fullScreen{
+	height: 100%;;
+	width: 100%;
+}
+.a2{
+	height:80%;
+	width: 100%;
+	position: absolute;
+	top: 10%;
+	background-image: url(../img/sx_img/8.png);
+	background-size: 100% 100%;
+}
+.deng{
+	width: 400px;;
+	height: 500px;;
+	position: absolute;
+	right: 10%;
+	top: 10%;
+	
+}
+.d1{
+	color:#FFF;
+	position: absolute;
+	top: 60px;
+	left: 50px;
+}
+.xx{
+	color:#000;
+}
+.btn{
+	color:#999;	
+}

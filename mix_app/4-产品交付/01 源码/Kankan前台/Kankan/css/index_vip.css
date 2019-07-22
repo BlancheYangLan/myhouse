@@ -1,0 +1,39 @@
+body {
+	font-family: "Microsoft YaHei", sans-serif;
+	color: #333;
+	background-color: #F1E9DC;
+}
+
+div.mui-content {
+	background-color: #F1E9DC;
+}
+
+p {
+	margin-bottom: 0px;
+}
+
+.mui-slider-indicator.mui-segmented-control {
+	padding: 5px 10px;
+	background: #FFF;
+}
+
+.mui-segmented-control.mui-scroll-wrapper {
+	height: 45px;
+}
+
+.mui-fullscreen .mui-segmented-control~.mui-slider-group {
+	top: 45px;
+}
+
+.mui-slider-group .mui-scroll-wrapper {
+	padding-top: 5px;
+}
+
+#av {
+	width: 140px;
+	margin-left: -20px;
+}
+#av img{
+	height: 150px;
+	
+}

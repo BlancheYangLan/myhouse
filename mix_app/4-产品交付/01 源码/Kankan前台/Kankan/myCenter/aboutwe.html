@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.css" rel="stylesheet" />
+		<link href="../css/help.css" rel="stylesheet" />
+		<script src="../js/mui.js"></script>
+		<script src="../js/vue.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				gestureConfig: {
+					tap: true, //默认为true
+					doubletap: true, //默认为false
+					longtap: true, //默认为false
+					swipe: true, //默认为true
+					drag: true, //默认为true
+					hold: false, //默认为false，不监听
+					release: false //默认为false，不监听
+				}
+			});
+			mui.plusReady(function(){
+				mui('.mui-bar-nav').on('tap', 'a.mui-icon-left-nav', function() {
+					mui.back();
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div class="mui-bar mui-bar-nav mui-bar-nav-bg header">
+			<a href="#" class="mui-icon mui-icon-left-nav mui-pull-left" style="font-size: 28px;"></a>
+			<h1 class="mui-title">关于我们</h1>
+		</div>
+		<ul class="mui-table-view aboutwe" id="aboutwe">
+			<li class="mui-table-view-cell feedback" v-for="aboutwe in aboutwe">
+				<a class="feedback2">
+					<img class="tubiao-size" v-bind:src="aboutwe.tubiao" />
+					<span class="inabout">{{aboutwe.wenzi}}</span>
+					<span class="inabout1">{{aboutwe.wenzi1}}</span>
+				</a>
+			</li>
+		</ul>
+	</body>
+	<script>
+		var vue = new Vue({ //创建负责数据绑定的vue对象
+			el: "#aboutwe",
+			data: {
+				aboutwe: []
+			}
+		})
+		mui.get('https://192.168.43.157:1443/json/help.json', function(data) {
+			vue.aboutwe = data.aboutwe;
+		}, 'json');
+	</script>
+</html>

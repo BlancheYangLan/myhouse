@@ -1,0 +1,142 @@
+.mui-hot-dh{
+	width: 100%;
+	height: 50px;
+	background-color: #000000;
+	z-index:902;
+}
+.mui-lable-corlor{
+	color: #FFFFFF;
+}
+.mui-hot-bottom{
+	height: 70px;
+	width: 100%;
+	z-index: 993;
+}
+.mui-hot-bottom i{
+	color: #000000;
+}
+.mui-hot-bt{
+	position: absolute;
+	left: 17%;
+	width: 70%;
+	height: 60px;
+}
+.mui-hot-bt a{
+	position: relative;
+	top: 20px;
+	font-size: 18px;
+	margin-left: 10%;
+	color: #FAFAFA;
+	font-family: "黑体";
+}
+.mui-hot-bt a:hover{
+	color: green;
+	border-bottom: solid 3px #008000;
+	padding-bottom: 2px;
+}
+.mui-hot-ridio{
+	width: 100%;
+	height: 220px;
+	margin-top: 42px;
+	background-color: #000000;
+}
+.mui-hot-ridio video{
+	width: 100%;
+	height: 100%;
+	object-fit:fill;  
+}
+.mui-hot-ridioms{
+	width: 100%;
+	height: 45px;
+	background-color: #FAFAFA;
+	position: relative;
+	top: -10px;
+}
+.mui-hot-ridioms img{
+	width: 35px;
+	height: 35px;
+	border-radius: 23px;
+	position: relative;
+	top: 7px;
+	left: 20px;
+}
+.mui-hot-ridioms span{
+	font-size: 13px;
+	position: relative;
+	left: 25px;
+	top: -4px;
+}
+.mui-hot-ridioms i{
+	color: #000000;
+	position: relative;
+	left: 70%;
+	top: -10px;
+}
+.mui-hot-bq{
+	width: 40%;
+	height: 40px;
+	position: relative;
+	top: -35px;
+	left: 50%;
+}
+.mui-hot-bq img{
+	margin-left: 10px;
+	position: relative;
+	top: 10px;
+	width: 25px;
+	height: 25px;
+}
+.mui-hot-bq span{
+	font-size: 5px;
+	margin-left: -13px;
+	position: relative;
+	top: -11px;
+	color: #000000;
+}
+.mui-hot-db{
+	width: 100%;
+	height: 130px;
+}
+.btn-play{
+	width: 50px;
+	height: 50px;
+	position:absolute;
+	top:40%;
+	left:43%;
+	z-index:900;
+	opacity:0.6;
+}
+.mui-hot-zimu{
+	width: 93%;
+	height: 110px;
+	line-height: 150%;
+    z-index:901;
+	font-size: 18px;
+	color: #FAFAFA;
+	font-family: "黑体";
+	position: absolute;
+	top: -200px;
+	left: 4%;
+	
+}
+.popover img{
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	left: 90%;
+	top: 10px;
+	opacity:0.7;
+}
+.mui-hot-Load{
+	width: 60%;
+	height: 60px;
+	background-color: #000000;
+	position: relative;
+	left: 20%;
+	top: 400px;
+}
+.mui-hot-tan{
+	height: 2000px;
+	width: 100%;
+	border-color: #000000;
+}

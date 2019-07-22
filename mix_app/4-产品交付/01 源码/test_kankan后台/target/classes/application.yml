@@ -1,0 +1,22 @@
+server:
+  port: 1443
+#  tomcat:
+#    max-connections: 3600000
+  ssl:
+    key-store: classpath:server.keystore
+    key-alias: tomcat
+    key-password: 123456
+    key-store-type: jks
+    enabled: true
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/kankan?characterEncoding=UTF-8&useSSL=true
+    username: root
+    password:
+
+file:
+  path: file/**
+  address: E://picture/
+

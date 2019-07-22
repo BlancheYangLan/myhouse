@@ -1,0 +1,263 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<link href="css/index_sub.css" rel="stylesheet" />
+	</head>
+
+	<body id="css">
+		<script src="js/mui.js"></script>
+		<script src="js/vue.min.js"></script>
+		<script src="js/jquery.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				gestureConfig: {
+					tap: true, //默认为true
+					doubletap: true, //默认为false
+					longtap: true, //默认为false
+					swipe: true, //默认为true
+					drag: true, //默认为true
+					hold: false, //默认为false，不监听
+					release: false //默认为false，不监听
+				},
+				
+					/* pullRefresh: {
+						container: "#css", //下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+						down: {
+							style: 'circle', //必选，下拉刷新样式，目前支持原生5+ ‘circle’ 样式
+							color: '#2BD009', //可选，默认“#2BD009” 下拉刷新控件颜色
+							height: '50px', //可选,默认50px.下拉刷新控件的高度,
+							range: '100px', //可选 默认100px,控件可下拉拖拽的范围
+							offset: '0px', //可选 默认0px,下拉刷新控件的起始位置
+							auto: false, //可选,默认false.首次加载自动上拉刷新一次
+							callback: callfunction //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+						},
+					}	 */		
+			
+			});
+			//页面加载完毕之后执行
+			mui.plusReady(function() {
+				mui('.cs').on('tap', '.mui-movie-row-item', function() {
+					var url = this.getAttribute("name");
+					if (url) {
+						mui.openWindow({
+							url: 'index_playvideo.html',
+							extras: {
+								url: url
+							}
+						});
+					}
+
+				});
+					mui('.mui-movie').on('tap', '.hade', function() {
+						var url = this.getAttribute("name");
+						if (url) {
+							mui.openWindow({
+								url: 'index_playvideo.html',
+								extras: {
+									url: url
+								}
+							});
+						}
+				
+					});
+				
+				mui('.cc').on('tap', '.mui-movie-row-item', function() {
+					var url = this.getAttribute("name");
+					if (url) {
+						mui.openWindow({
+							url: 'movies_playvideo.html',
+							extras: {
+								url: url
+							}
+						});
+					}
+
+				});
+				mui('.mui-movie').on('tap', '.moviehade', function() {
+					var url = this.getAttribute("name");
+					if (url) {
+						mui.openWindow({
+							url: 'movies_playvideo.html',
+							extras: {
+								url: url
+							}
+						});
+					}
+				
+				});
+				var gallery = mui('.mui-slider');
+				gallery.slider({
+					interval: 3000 //自动轮播周期，若为0则不自动播放，默认为0；
+				});
+			});
+			/* function callfunction() {
+				 location.reload();
+				mui('#css').pullRefresh().endPulldownToRefresh();
+				 //完成刷新	
+			}; */
+			
+		</script>
+
+
+		<header class="mui-bar mui-bar-nav">
+
+			<div class="mui-input-row mui-search search-size">
+				<input type="search" placeholder="搜索" class="mui-input-clear" />
+			</div>
+			<i class="mui-icon mui-icon-home mui-pull-right"></i>
+			<i class="mui-icon mui-icon-download mui-pull-right"></i>
+			<i class="mui-icon mui-icon-info mui-pull-right "></i>
+		</header>
+		<div id="mui-content" class="mui-content">
+			<div class="mui-slider">
+				<div class="mui-slider-group mui-slider-loop">
+					<!--支持循环，需要重复图片节点-->
+					<div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img :src="lastshuffling" /></a></div>
+					<div class="mui-slider-item" v-for="shufflings in shuffling"><a href="#"><img :src="shufflings.shufflingImg" />
+						</a>
+						<p>{{shufflings.shufflingDescribe}}</p>
+					</div>
+					<!--支持循环，需要重复图片节点-->
+					<div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img :src="firstshuffling" /></a></div>
+				</div>
+			</div>
+
+			<div class="mui-movie">
+				<h4>猜你在追<i class="mui-icon mui-icon-forward"></i></h4>
+				<div class=" mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted " style="height: 150px;">
+					<div class="mui-scroll" style="top:0;">
+						<div class="mui-control-item mui-control-item-div" v-for="chasings in chasing">
+							<img :src="chasings.tvseriesImg" />
+							<p>{{chasings.tvseriesName}}</p>
+							<p>{{chasings.tvseriesIntroduction}}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="mui-movie">
+				<h4>同步剧场<i class="mui-icon mui-icon-forward"></i></h4>
+				<div v-for="recommendeds in recommended">
+					<div style="width: 100%;height: 260px;"  class="hade" :name="recommendeds.id">
+						<img class="mui-movie-hader" :src="recommendeds.tvseriesImg" />
+						<img v-if="recommendeds.vipId==1" class="mui-slider-theatre mui-pull-right" :src="recommendeds.vipJpg" />
+						<div class="mui-slider-theatre-p mui-pull-right"><span>更新至{{recommendeds.tvseriesBlues}}集</span></div>
+					</div>
+					<p>{{recommendeds.tvseriesName}}</p>
+					<p>{{recommendeds.tvseriesIntroduction}}</p>
+				</div>
+				<div class="mui-movie-row cs">
+					<li class="mui-movie-row-item" v-for="movie in hotMovies" :url="movie.bluesUrl" :name="movie.id">
+						<img :src="movie.tvseriesImg" />
+						<div v-if="movie.vipId==1" class="mui-slider-theatre-img mui-pull-right"><img :src="movie.vipJpg" /></div>
+						<div v-else class="mui-slider-theatre-img mui-pull-right"></div>
+						<div class="mui-slider-theatre-p1 mui-pull-right"><span>更新至{{movie.tvseriesBlues}}集</span></div>
+						<p style="white-space:nowrap;">{{movie.tvseriesName}}</p>
+						<p>{{movie.tvseriesIntroduction}}</p>
+					</li>
+				</div>
+			</div>
+
+			<div class="mui-movie">
+				<div class="bor-top">
+					<div class="mui-pull-left mui-bor-movie">
+						<i class="mui-icon mui-icon-videocam"></i>
+						<span>蜘蛛侠·终极预告首发</span></div>
+					<div id="flash">
+						<i class="mui-icon mui-icon-loop"></i>
+						<span>换一换</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="mui-movie">
+				<h4>电影大片<i class="mui-icon mui-icon-forward"></i></h4>
+				<div v-for="moviesHaders in moviesHader">
+					<div style="width: 100%;height: 260px;" class="moviehade" :name="moviesHaders.id">
+						<img class="mui-movie-hader" :src="moviesHaders.movieImg" />
+						<img v-if="moviesHaders.vipId==1" class="mui-slider-theatre mui-pull-right" :src="moviesHaders.vipJpg" />
+					</div>
+					<p>{{moviesHaders.movieName}}</p>
+					<p>{{moviesHaders.movieIntroduction}}</p>
+				</div>
+				<div class="mui-movie-row cc">
+					<li class="mui-movie-row-item" v-for="movie in movies" :url="movie.videoSp" :name="movie.id">
+						<img :src="movie.movieImg" />
+						<div v-if="movie.vipId==1" class="mui-slider-theatre-img mui-pull-right"><img :src="movie.vipJpg" /></div>
+						<div v-else class="mui-slider-theatre-img mui-pull-right"></div>
+						<p style="white-space:nowrap;">{{movie.movieName}}</p>
+						<p>{{movie.movieIntroduction}}</p>
+					</li>
+				</div>
+			</div>
+			<div class="mui-movie">
+				<div class="bor-top">
+					<div class="mui-pull-left mui-bor-movie">
+						<i class="mui-icon mui-icon-videocam"></i>
+						<span>更多电影</span></div>
+					<div id="flashes">
+						<i class="mui-icon mui-icon-loop"></i>
+						<span>换一换</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		//创建负责数据绑定的Vue对象
+		var vue = new Vue({
+			el: "#mui-content",
+			data: {
+				hotMovies: [],
+				shuffling: [],
+				chasing: [],
+				recommended: [],
+				movies: [],
+				moviesHader: [],
+				firstshuffling: '',
+				lastshuffling: '',
+				videoVip: ''
+			}
+		})
+		//电视剧板块
+		mui.get('https://192.168.43.157:1443/indexs.html', function(data) {
+			vue.hotMovies = data.hotingMovies;
+			vue.chasing = data.chasing;
+			vue.recommended = data.recommended;
+			vue.videoVip = vue.hotMovies[0].vipJpg;
+
+		}, 'json');
+
+		mui.get('https://192.168.43.157:1443/shuffling.html', function(datas) {
+			vue.shuffling = datas;
+			vue.firstshuffling = datas[0].shufflingImg;
+			vue.lastshuffling = datas[datas.length - 1].shufflingImg;
+		}, 'json');
+
+		mui('.bor-top').on('tap', '#flash', function() {
+			mui.get('https://192.168.43.157:1443/indexs.html', function(data) {
+				vue.hotMovies = [];
+				vue.hotMovies = data.hotingMovies;
+			}, 'json')
+		})
+		//电影板块
+		mui.get('https://192.168.43.157:1443/index_movies.html', function(data) {
+			vue.movies = data.movies;
+			vue.moviesHader = data.moviesHader;
+		}, 'json');
+
+		mui('.bor-top').on('tap', '#flashes', function() {
+			mui.get('https://192.168.43.157:1443/index_movies.html', function(data) {
+				vue.movies = [];
+				vue.movies = data.movies;
+			}, 'json')
+		})
+	</script>
+</html>

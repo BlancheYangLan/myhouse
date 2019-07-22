@@ -1,0 +1,26 @@
+.mui-badge-block {
+	background-color: #000000;
+}
+
+.mui-pull-right {
+	height: 44px;
+	width: 44px;
+}
+
+.mui-a-baocun {
+	padding-top: 10px;
+}
+
+.mui-font-color-white {
+	color: white;
+}
+
+.mui-input-group .mui-input-row {
+	margin-bottom: 10px;
+	height: 60px;
+	padding-top: 10px;
+}
+.mui-image{
+	height: 40px;
+	width: 40px;
+}

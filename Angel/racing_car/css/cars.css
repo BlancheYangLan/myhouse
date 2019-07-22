@@ -1,0 +1,88 @@
+.up{
+	margin: 0;
+	border: none;
+	height: 205px;
+	width: 100%;
+	border-bottom: solid red 5px;
+}
+.tu{
+	position: absolute;
+	left: 0%;
+
+}
+.wen{
+	position: absolute;
+	top:150px;
+	right: 3%;
+}
+li { 
+	list-style:none;
+	float:left; /* 往左浮动 */
+	margin-right: 8px;
+	padding-right: 8px;
+}
+li a{
+	font-size: 18px;
+	text-decoration:none;
+	color: black;
+	font-weight: bold;
+}
+
+#img_style{
+	text-align: center;
+}
+*{ padding:0px; margin:0px; }
+a{ color:#C8DCE5; }
+h3{ margin: 10px 10px 0 10px; color:#FFF; font:18pt Arial, sans-serif; letter-spacing:-1px; font-weight: bold;  }
+			
+.boxgrid{ 
+	width: 370px; 
+	height: 260px; 
+	margin:10px; 
+	float:left; 
+	background:#161613; 
+	border: solid 2px #8399AF; 
+	overflow: hidden; 
+	position: relative; 
+}
+	.boxgrid img{ 
+		position: absolute; 
+		top: 0; 
+		left: 0; 
+		border: 0; 
+	}
+	.boxgrid p{ 
+		padding: 0 10px; 
+		color:#afafaf; 
+		font-weight:bold; 
+		font:10pt "Lucida Grande", Arial, sans-serif; 
+	}
+				
+.boxcaption{ 
+	float: left; 
+	position: absolute; 
+	background: #000; 
+	height: 100px; 
+	width: 100%; 
+	opacity: .8; 
+	/* For IE 5-7 */
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+	/* For IE 8 */
+	-MS-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+ }
+ 	.captionfull .boxcaption {
+ 		top: 260;
+ 		left: 0;
+ 	}
+ 	.caption .boxcaption {
+ 		top: 220;
+ 		left: 0;
+ 	}
+hr{
+	color: black;
+	height: 3px;
+}
+.box_wen{
+	top: 10px;
+	font-size: 16px;
+}

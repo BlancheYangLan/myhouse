@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.css" rel="stylesheet" />
+		<script src="../js/mui.js"></script>
+		<script src="../js/jquery.js"></script>
+		<script src="../js/vue.min.js"></script>
+		<script src="../js/jsencrypt.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<link href="../css/login.css" rel="stylesheet" />
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function() {
+				mui('#loginer').on('tap', '.denglu', function() {
+					//获得输入框中的用户名和密码
+					var userName = mui('.userName')[0].value;
+					var password = mui('.password')[0].value;
+					var vue = new Vue({ //创建负责数据绑定的vue对象
+						el: "#user",
+						data: {
+							user: []
+						}
+					})
+					mui.post('https://192.168.43.157:1443/loginvalidate.html', //访问远程服务接口
+						{
+							userName: userName,
+							password: password
+						},
+						function(data) {
+							var success = data.success;
+							var user = data.user;
+							if(success){
+								localStorage.setItem("userInfo",JSON.stringify(user));
+								plus.webview.currentWebview().opener().evalJS('updataLoginState()');
+								mui.back();
+							}else{
+								mui.toast(data.error);
+							}		
+						}, 'json');
+				});
+					
+				mui('.mui-icon-locked').on('tap', '.a', function() { //输入密码
+					document.getElementById('img').src = "../img/ante_baby.jpg";
+				});
+				mui('.mui-icon-person').on('tap', '.a', function() { //输入用户名
+					document.getElementById('img').src = "../img/anten_baby.jpg";
+				});
+				mui('.mui-bar-nav').on('tap', '.tubia', function() { //返回个人中心
+					mui.back();
+				});
+				mui('#loginer').on('tap', '.zuce', function() {
+					mui.openWindow({
+						url: 'register.html'
+					})
+				})
+			});
+		</script>
+	</head>
+
+	<body>
+
+		<header id="user" class="mui-bar mui-bar-nav" style="background-color: #4CD964;">
+			<span class="mui-icon mui-icon-left-nav mui-pull-left tubia" style="font-size: 28x;"></span>
+			<h3 class="mui-title ">登录</h3>
+			<div class="mui-icon mui-icon-help mui-top-mima"></div>
+			<div class="mui-top-ms">忘记密码</div>
+		</header>
+		<div style="height:220px; margin-top:42px; width: 100%;">
+			<img id="img" src="../img/anten_baby.jpg" style="height: 100%;width: 100%;">
+		</div>
+		<form class="form">
+			<span class="mui-icon mui-icon-person">
+				<input class="userName a" type="text" id="a" style="width: 200px;" placeholder="用户名/电话号码">
+			</span><br />
+
+			<span class="mui-icon mui-icon-locked">
+				<input class="password a" type="password" id="a" style="width: 200px;" placeholder="请输入密码">
+			</span>
+		</form>
+		<form class="form">
+			
+			<div class="mui-button-row" id="loginer" style="padding-top: 30px;">
+				<button type="button" class="mui-btn mui-btn-success mui-btn-outlined zuce">注册账号</button>
+				<button type="button" class="mui-btn mui-btn-green denglu">确认登录</button>
+			</div>
+		</form>
+
+		<div class="mui-weizhi">
+			<a href="wechat.html"><span class="mui-icon mui-icon-weixin color">
+					<h5>微信登录</h5>
+				</span>
+			</a>
+			<a href="wechat.html"><span class="mui-icon mui-icon-qq color">
+					<h5>QQ登录</h5>
+				</span>
+			</a>
+			<a href="wechat.html"><span class="mui-icon mui-icon-weibo color">
+					<h5>新浪微博</h5>
+				</span>
+			</a>
+		</div>
+	</body>
+	<script>
+	
+		
+		//创建负责前端加密的对象
+		/*var jsEncrypt = new JSEncrypt();
+		//设置公钥
+		jsEncrypt.setPrivateKey(publicKey);
+		//加密数据
+		userName = jsEncrypt.encrypt(userName);
+		password = jsEncrypt.encrypt(password);*/
+		//提交数据到服务器进行登录验证
+		
+		
+		//声明公钥全局变量
+		// var publicKey;
+		// //获取公钥
+		// mui.get("https://192.168.43.157:1443/getubickey.html",function(data){
+		// 	publicKey = data;
+		// 	//alert(publicKey);
+		// })	
+	</script>
+</html>

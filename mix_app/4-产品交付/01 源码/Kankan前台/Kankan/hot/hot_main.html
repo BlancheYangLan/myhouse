@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<!-- <meta name="Access-Control-Allow-Origin" content="*"> -->
+		<title></title>
+		<style>
+			.Selection {                
+                	color: #008000;
+                	border-bottom: solid 3px #008000;
+                	padding-bottom: 2px;
+             }
+        </style>
+		<script src="../js/mui.js"></script>
+		<script src="../js/vue.min.js"></script>
+		<script src="../js/jquery.js"></script>
+		<link href="../css/mui.css" rel="stylesheet" />
+		<link href="../css/hot.css" rel="stylesheet" />
+		<script type="text/javascript">
+			//下拉刷新配置
+			mui.init({
+				pullRefresh: {
+					container: "#hot_video", //下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+					down: {
+						style: 'circle', //必选，下拉刷新样式，目前支持原生5+ ‘circle’ 样式
+						color: '#2BD009', //可选，默认“#2BD009” 下拉刷新控件颜色
+						height: '50px', //可选,默认50px.下拉刷新控件的高度,
+						range: '100px', //可选 默认100px,控件可下拉拖拽的范围
+						offset: '0px', //可选 默认0px,下拉刷新控件的起始位置
+						auto: false, //可选,默认false.首次加载自动上拉刷新一次
+						callback: callfunction //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+					},
+					up: {
+						height: 50, //可选.默认50.触发上拉加载拖动距离
+						auto: false, //可选,默认false.自动上拉加载一次
+						contentrefresh: "正在加载...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
+						contentnomore: '没有更多数据了', //可选，请求完毕若没有更多数据时显示的提醒内容；
+						callback: function() {
+							//获得加载对象
+							var self = this;
+							setTimeout(function() {
+								if (localStorage.getItem("endpoint") == null) {
+									var end = 3;
+								} else {
+									var end = localStorage.getItem("endpoint");
+								}
+								end = parseInt(end) + 3;
+								localStorage.setItem("endpoint", end);
+								mui.post('https://192.168.43.157:1443/hot_main.html', {
+									endpoint: localStorage.getItem("endpoint")
+								}, function(data) {
+									vue.hotMovies = data;
+								}, 'json');
+								// //创建一个计数变量,用于计量下拉的次数
+								var num = 0;
+								num = parseInt(num) + 3;
+								// alert(localStorage.getItem("interrupted"));
+								// alert(num);
+								localStorage.setItem("interrupted", localStorage.getItem("endpoint") - 3);
+								//结束加载
+								self.endPullupToRefresh(false);
+							}, 800);
+							//上拉结束
+							mui('.mui-hot-ridio').off('tap', '.btn-play');
+							mui('.mui-hot-bq').off('tap', '.mui-hot-like');
+
+							setTimeout(function() {
+								mui('.mui-hot-ridio').on('tap', '.btn-play', function() {
+									this.style.display = "none";
+									//返回预览数,观众点击一次加一次
+									var viewid = this.getAttribute("id");
+									viewid = parseInt(viewid);
+									var viewnum = parseInt(this.getAttribute("name")) + 1;
+									var viewnum = parseInt(viewnum);
+									//将预览数与视频的ID传入后台
+									mui.post('https://192.168.43.157:1443/UpdatePreviewhot_main.html', {
+										preview: viewnum,
+										id: viewid
+									}, function(data) {}, 'json');
+									//观众点击播放后，隐藏播放按钮					
+									var zm = this.parentNode.querySelector(".mui-hot-zimu");
+									zm.style.display = "none";
+									var video = this.parentNode.querySelector("video");
+									video.setAttribute("controls", "controls");
+									video.play();
+								});
+								//视频播放完成后隐藏视频控制台,显示图标
+								mui('.mui-hot-ridio video').each(function() {
+									this.addEventListener('ended', function() {
+										this.removeAttribute("controls");
+										var btnPlay = this.parentNode.querySelector("img.btn-play");
+										btnPlay.style.display = "block";
+									}, false);
+								});
+								//单击喜欢触发效果
+								mui('.mui-hot-bq').on('tap', '.mui-hot-like', function() {
+									//sign变量是记录喜欢点击的是单数还是双数									
+									if (localStorage.getItem("prefer") == null) {
+										var sign = 0;
+									} else {
+										var sign = localStorage.getItem("prefer");
+									}
+									sign = parseInt(sign);
+									if (sign % 2 == 0) {
+										//更换爱心图片
+										this.src = "https://192.168.43.157:1443/img/hot_hong.png";
+										var vid = this.getAttribute("id");
+										var prefernum = this.getAttribute("name");
+										prefernum = parseInt(prefernum) + 1;
+										mui.post('https://192.168.43.157:1443/UpdatePrefer_main.html', {
+											prefernum: prefernum,
+											id: vid
+										}, function(data) {}, 'json');
+
+									} else {
+										//更换爱心图片
+										this.src = "https://192.168.43.157:1443/img/hot_xin.png";
+										var vid = this.getAttribute("id");
+										var prefernum = this.getAttribute("name");
+										prefernum = parseInt(prefernum);
+										mui.post('https://192.168.43.157:1443/UpdatePrefer_main.html', {
+											prefernum: prefernum,
+											id: vid
+										}, function(data) {}, 'json');
+									}
+									sign = parseInt(sign) + 1;
+									localStorage.setItem("prefer", sign);
+								});
+							}, 900);
+						}
+					},
+				}
+			});
+			//下拉刷新执行函数
+			function callfunction() {
+				//alert($("#hot_video> div").last().attr("id"));				
+				if (localStorage.getItem("interrupted") == null) {
+					var count = 0;
+				} else {
+					var count = localStorage.getItem("interrupted");
+				}
+				count = parseInt(count) + 3;
+				//缓存变量
+				localStorage.setItem("interrupted", count);
+				if (localStorage.getItem("endpoint") > 0) {
+					localStorage.setItem("endpoint", 3);
+				}
+				//最大12条,下拉超过12条后重新开始
+
+				mui.post('https://192.168.43.157:1443/hot_main.html', {
+					interrupted: localStorage.getItem("interrupted")
+				}, function(data) {
+					vue.hotMovies = data;
+				}, 'json');
+				mui('#hot_video').pullRefresh().endPulldownToRefresh(); //完成刷新													
+			}
+			//控制点击视频后隐藏播放图片和图标
+			mui.plusReady(function() {
+				mui('.mui-hot-ridio').on('tap', '.btn-play', function() {
+					this.style.display = "none";
+					//返回预览数,观众点击一次加一次
+					var viewid = this.getAttribute("id");
+					viewid = parseInt(viewid);
+					var viewnum = parseInt(this.getAttribute("name")) + 1;
+					var viewnum = parseInt(viewnum);
+					//将预览数与视频的ID传入后台
+					mui.post('https://192.168.43.157:1443/UpdatePreviewhot_main.html', {
+						preview: viewnum,
+						id: viewid
+					}, function(data) {}, 'json');
+					//观众点击播放后，隐藏播放按钮					
+					var zm = this.parentNode.querySelector(".mui-hot-zimu");
+					zm.style.display = "none";
+					var video = this.parentNode.querySelector("video");
+					video.setAttribute("controls", "controls");
+					video.play();
+				});
+				//视频播放完成后隐藏视频控制台,显示图标
+				mui('.mui-hot-ridio video').each(function() {
+					this.addEventListener('ended', function() {
+						this.removeAttribute("controls");
+						var btnPlay = this.parentNode.querySelector("img.btn-play");
+						btnPlay.style.display = "block";
+					}, false);
+				});
+				//单击喜欢触发效果
+				mui('.mui-hot-bq').on('tap', '.mui-hot-like', function() {
+					//sign变量是记录喜欢点击的是单数还是双数									
+					if (localStorage.getItem("prefer") == null) {
+						var sign = 0;
+					} else {
+						var sign = localStorage.getItem("prefer");
+					}
+					sign = parseInt(sign);
+					if (sign % 2 == 0) {
+						//更换爱心图片
+						this.src = "https://192.168.43.157:1443/img/hot_hong.png";
+						var vid = this.getAttribute("id");
+						var prefernum = this.getAttribute("name");
+						prefernum = parseInt(prefernum) + 1;
+						mui.post('https://192.168.43.157:1443/UpdatePrefer_main.html', {
+							prefernum: prefernum,
+							id: vid
+						}, function(data) {}, 'json');
+
+					} else {
+						//更换爱心图片
+						this.src = "https://192.168.43.157:1443/img/hot_xin.png";
+						var vid = this.getAttribute("id");
+						var prefernum = this.getAttribute("name");
+						prefernum = parseInt(prefernum);
+						mui.post('https://192.168.43.157:1443/UpdatePrefer_main.html', {
+							prefernum: prefernum,
+							id: vid
+						}, function(data) {}, 'json');
+					}
+					sign = parseInt(sign) + 1;
+					localStorage.setItem("prefer", sign);
+				});
+			});
+
+
+            mui.ready(function() {
+            	var datas = localStorage.getItem('userInfo');
+            	var user = JSON.parse(datas);
+            	var username = user.userName;
+            	var usertouxiang = user.userIcon;
+            	var userN = document.getElementById("userName");
+            	userN.innerHTML = username;
+            	var imgs = mui('.head-sculpture img')[0]; //获得对象
+            	imgs.src = usertouxiang;
+            })
+
+           		
+			//清楚缓存数据
+			//localStorage.clear();
+		</script>
+
+	</head>
+	<body>
+		<!------------------------------------ 头部 ---------------------------------------->
+		<header class="mui-bar mui-bar-nav mui-hot-dh">
+			<div class="mui-input-row mui-search input-style">
+
+				<span class="mui-icon mui-icon-search mui-lable-corlor mui-pull-left" style="font-size:30px;"></span>
+				<span class="mui-icon mui-icon-plus mui-lable-corlor mui-pull-right" style="font-size:30px;"></span>
+				<div class="mui-hot-bt">
+					<a href="#">关注</a>
+					<a id="default" href="#">推荐</a>
+					<a href="#">小视频</a>
+				</div>
+			</div>
+		</header>
+		<!------------------------------------ 头部 ---------------------------------------->
+		<div id="hot_video">
+			<div class="mui-hot-ridio" v-for="(hotMovie,index) in hotMovies" style="position:relative;">
+				<img :id="hotMovie.videoId" :name="hotMovie.videoPreviewQuantity" src="https://192.168.43.157:1443/img/hot_star.png"
+				 class="btn-play" />
+				<video :src="hotMovie.videoPath" :poster="hotMovie.videoMask"></video>
+				<div class="mui-hot-ridioms">
+					<div class="mui-hot-zimu">
+						{{hotMovie.videoDiscribe}}
+					</div>
+					<img :src="hotMovie.videoMask" />
+					<span>{{hotMovie.makeName}}</span>
+					<a class="popover" href="#sheet1">
+						<img src="https://192.168.43.157:1443/img/ellipsis-v.png" /><a>
+							<div class="mui-hot-bq">
+								<img :id="hotMovie.videoId" :name="hotMovie.videoCollectNumber" class="mui-hot-like" src="https://192.168.43.157:1443/img/hot_xin.png" />
+								<span>{{hotMovie.videoCollectNumber}}</span>
+								<img src="https://192.168.43.157:1443/img/hot_huo.png" />
+								<span class="cishu">{{hotMovie.videoPreviewQuantity}}</span>
+							</div>
+				</div>
+				<!-- <div style="position:relative;width:100%;height:130px;background-color: #EC971F;"></div> -->
+			</div>
+			<!-- <div class="mui-hot-Load">加载更多</div> -->
+			<div style="position:relative;width:100%;height:50px;"></div>
+		</div>
+
+		<div id="sheet1" class="mui-popover mui-popover-bottom mui-popover-action ">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="#">举报</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="#">分享</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="#">收藏</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="#sheet1">取消</a>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script>
+		//ajax
+		//创建负责数据绑定的vue对象
+		var vue = new Vue({
+			el: "#hot_video",
+			data: {
+				hotMovies: []
+			},
+		})
+         //document.getElementById("default").classList.add("Selection");	
+		mui.get('https://192.168.43.157:1443/hot_main.html', function(data) {
+			vue.hotMovies = data;
+		}, 'json');
+	</script>

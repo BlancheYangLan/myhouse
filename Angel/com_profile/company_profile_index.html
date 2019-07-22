@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>公司简介</title>
+	<!-- <link rel="stylesheet" href="../css/bootstrap.min.css"> -->
+	<link rel="stylesheet" type="text/css" href="../css/index.css">
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	
+ <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/company_profile_index.css">
+	<link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/lrtk.css" rel="stylesheet" type="text/css" />
+    <script src="js/modernizr.custom.97074.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.hoverdir.js"></script>
+</head>
+<body>
+<!-- 轮播图 -->
+<div>
+	<iframe src="../header.php" width="100%" style="padding:0;border: none;"></iframe>
+</div>
+
+<div  class="lunbo" id="lunbo">
+  <div id="myCarousel" class="carousel slide">
+      <!-- 轮播（Carousel）指标 -->
+      <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>   
+      <!-- 轮播（Carousel）项目 -->
+      <div class="carousel-inner">
+          <div class="item active">
+              <div id="lunbo1">
+                <h1>FERRARI</h1>
+                <h3>THE NEW CREATION FROM THE ONE-OFF </h3>
+                <h3>PROGRAMME</h3>
+              </div>  
+              <img src="../img/fq_img/img_ferrari_company_1.jpg" alt="First slide">
+          </div>
+          <div class="item">
+              <div id="lunbo2">
+                <h1>FERRARI 488</h1>
+                <h3>TRACK-DERIVED EXHILARATION AND PERFORMANCE </h3>
+                <h3>PROGRAMME</h3>
+              </div> 
+              <img src="../img/fq_img/img_ferrari_company_2.jpg" alt="Second slide">
+          </div>
+          <div class="item">
+              <div id="lunbo3">
+                <h1>FERRARI MONZA SP1</h1>
+                <h1>AND SP2</h1>
+                <h3>THE FIRST 'ICONA' MODELS</h3>
+              </div> 
+              <img src="../img/fq_img/img_ferrari_company_3.jpg" alt="Third slide">
+          </div>
+      </div>
+      <!-- 轮播（Carousel）导航 -->
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+      </a>
+  </div> 
+</div>
+
+<!-- 中间 -->
+<div>
+    <div class="container" id="mid_1">
+		<section>
+		    <ul id="da-thumbs" class="da-thumbs">
+				<li>
+					<a href="#">
+						<img src="../img/fq_img/company_2.jpg" />
+						<div><span>A TEAM PREPARED TO MEET ITS OBJECTIVES</span></div>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="../img/fq_img/company_1.jpg" />
+						<div><span>EVERY FERRARI IS A MASTERPIECE</span></div>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="../img/fq_img/company_3.jpg" />
+						<div><span>SHARE PERFORMANCE</span></div>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<img src="../img/fq_img/company_4.jpg" />
+						<div><span>Gallery of Mo 2.Mo logo by Adam Campion</span></div>
+					</a>
+				</li>
+				<li>	
+					<a href="#">
+						<img src="../img/fq_img/company_7.jpg" />
+						<div><span>Ice Cream - nom nom by Eight Hour Day</span></div>
+					</a>
+				</li>
+				<li id="buju">
+					<a href="#">
+						<img src="../img/fq_img/company_5.jpg" />
+						<div><span>My Muse by Zachary Horst</span></div>
+					</a>
+				</li>
+				<li id="buju1">
+					<a href="#">
+						<img src="../img/fq_img/company_6.jpg" />
+						<div><span>Natalie & Justin Cleaning by Justin Younger</span></div>
+					</a>
+				</li>
+			</ul>
+		</section>
+    </div>
+
+			
+	<script type="text/javascript">
+		$(function() {
+			$(' #da-thumbs > li ').each( function() { $(this).hoverdir(); } );
+		});
+	</script>
+<!-- 代码 结束 -->
+</div>
+
+
+<!-- 地址栏 -->
+<iframe src="../footer.html" width="100%" style="height:350px; overflow:hidden;border: none;"> 
+</iframe>
+</body>
+
+</html>

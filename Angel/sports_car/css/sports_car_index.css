@@ -1,0 +1,93 @@
+body{
+	background-color:#FFF;
+    margin:0px;
+}
+
+
+li {
+	text-align:center;
+	list-style-type: none;
+}
+
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+#daohang{  
+   background-image:url(../../img/fq_img/3.jpg);
+   height:170px;
+   
+}
+#daohang1{
+	background-color:#FFF;
+	position:absolute;
+	top:70px;
+	z-index:2;
+}
+
+#logo{
+	position:absolute;
+	top:-50px;
+
+}
+
+#font_style{
+	color:#F00;
+}
+#font_style1{
+	color:#CCC;
+	font-style:italic;
+}
+p{
+	font-size:18px;
+}
+
+#bg1{
+	height:500px;
+	background-color:#FFF;
+	position:relative;
+}
+#bg2{
+   position:relative;
+   top:20px; 
+   left:3%;
+}
+#bg3{
+   position:relative;
+   top:100px;
+   left:3%; 
+}
+#bg4{
+	height:500px;
+	background-color: #97907E;
+	position:relative;
+	/*top:20px;*/
+	z-index:-1;
+}
+.dingzhi{
+	position:relative;
+	top:50px;
+	left: 6%;
+}
+
+#bg5{
+	height:500px;
+	background-color:#FFF;
+	/*position:relative;
+	top:50px;
+*/}
+#bg6{
+   position:absolute;
+   top:20px; 
+   left:2%;
+}
+#bg7{
+   position:relative;
+   top:20px;
+   left:3%; 
+}
+
+

@@ -1,0 +1,7 @@
+backstage  后台管理
+com_profile  公司简介
+racing_car   赛车
+sports_car   跑车
+user    个人中心（登录 注册 个人信息）
+experience   线下预约
+ 

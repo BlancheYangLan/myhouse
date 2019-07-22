@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>协议项查看</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet"/>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init({ 
+				gestureConfig: {
+					tap: true, //默认为true
+					doubletap: true, //默认为false
+					longtap: true, //默认为false
+					swipe: true, //默认为true
+					drag: true, //默认为true
+					hold: false, //默认为false，不监听
+					release: false //默认为false，不监听
+				}
+			});
+			
+			mui.plusReady(function () {
+				var styles = {
+							top: '46px', //mui标题栏默认高度为45px；
+							bottom: '50px' //默认为0px，可不定义；
+						}
+						
+				var self = plus.webview.currentWebview(); //获得当前窗口
+				var url = self.url; //接受参数,获得参数值
+				var protocol = self.protocol; //接受参数,获得参数值
+				//alert(protocol);
+				var titleName = document.getElementById('title');  //获取头标题
+				titleName.innerHTML = protocol;   //修改头标题
+				
+				if(url){  // 判断是否获取到路径
+					var self = plus.webview.currentWebview();  // 获取当前web页面	
+					var subExist = plus.webview.getWebviewById(url); //根据id获得页面对象(即将打开的）)
+					//以下方法适用于页面数据更替频繁的情况
+					if(subExist){  // 判断将打开的页面是否已经存在
+						plus.webview.close(subExist);  //关闭已经存在的网页
+					}
+					var sub = plus.webview.create(url,url,styles); //创建子页面对象  url, id, style
+					self.append(sub); //追加网页
+				}
+				
+				mui('.mui-bar-nav').on('tap', 'a.mui-icon-back',function(){
+					mui.back();
+				});
+				
+			});
+		</script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-back mui-pull-left"></a>
+			<h2 id="title" class="mui-title">协议名</h2>
+		</header>
+		<div class="mui-content" id="content">
+			
+		</div>
+		
+	</body>
+
+</html>

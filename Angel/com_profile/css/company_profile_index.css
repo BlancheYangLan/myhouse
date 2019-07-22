@@ -1,0 +1,22 @@
+body{
+	margin: 0 auto;
+	background-color:#EAEAEA;
+}
+
+#lunbo{
+	width: 90%;
+	position:relative;
+	top: 0px;
+	left: 5%;
+}
+img{
+	width: 100%;
+}
+
+.mid_1{
+	background-color: #FFF;
+	width: 90%;
+	position:relative;
+	top: 0px;
+	left: 5%;
+}

@@ -1,0 +1,327 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>VIP开通界面</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/opening_members.css" rel="stylesheet" />
+		<script src="../js/mui.js"></script>
+		<script src="../js/vue.min.js"></script>
+		<script>
+			mui.init({ 
+				gestureConfig: {
+					tap: true, //默认为true
+					doubletap: true, //默认为false
+					longtap: true, //默认为false
+					swipe: true, //默认为true
+					drag: true, //默认为true
+					hold: false, //默认为false，不监听
+					release: false //默认为false，不监听
+				}
+			});
+			mui.plusReady(function () {
+				
+				
+				var vipName = ""
+				var price = "";  //选择的套餐价格
+				//单击套餐项,改变其样式
+				mui(".mui-select-row").on("tap",".mui-select-item",function(){
+					var flag = this.getAttribute("flag");
+					price = this.getAttribute("price");
+					vipName = this.getAttribute("vipitem");
+					var a = document.getElementById("price_box");
+					a.innerHTML = price;
+					if(flag){
+						if("true" == flag){
+							this.setAttribute("flag","false");
+							this.classList.remove('select_hover');
+							price = "";
+							a.innerHTML = "- -";
+						}else{
+							mui(".mui-select-item").each(function(){
+								this.setAttribute("flag","false");
+								this.classList.remove('select_hover');
+							});
+							this.setAttribute("flag","true");
+							this.classList.add('select_hover');
+						}
+					}
+				});
+				
+				//单击支付按钮时的验证
+				mui(".mui-bar-tab").on("tap",".confirmPayment",function(){
+					
+					//判断是否选择套餐(开通时长)
+					if(price){
+						var pay = ""; //支付方式
+						var radios = document.getElementsByName("radioBtn"); //获得 单选选按钮name集合
+						for(var i=0;i<radios.length;i++){ //根据 name集合长度 遍历name集合
+							//确定支付方式
+							if(radios[i].checked){
+								pay = radios[i].value;
+								break;
+							}
+						}
+						//判断是否选择支付方式
+						if(pay){
+							var read = document.getElementById("consent");
+							//判断是否同意用户协议
+							if(read.checked){
+								switch (pay){
+									case "vouchersPay":
+										if(checkVouchers(price)){
+											alert("套餐："+vipName+" 价格："+price+" 支付类型："+pay);
+										}else{
+											mui.alert('代金券余额不足','支付提示','确定',function (e) {
+												e.index
+											},'div');
+										}
+										break;
+									case "alipay":
+										mui.alert('支付宝支付功能建设中,敬请期待','支付提示','确定',function (e) {
+											e.index
+										},'div');
+										break;
+									case "wechatpay":
+										mui.alert('微信支付功能维护中,敬请期待','支付提示','确定',function (e) {
+											e.index
+										},'div');
+										break;
+									case "cardpay":
+										mui.alert('银联支付维护中，敬请期待','支付提示','确定',function (e) {
+											e.index
+										},'div');
+										break;
+									default:
+										break;
+								}
+								
+							}else{
+								mui.alert('请阅读并同意《会员服务信息》后操作!','支付提示','确定',function (e) {
+									e.index
+								},'div')
+							}
+						}else{
+							mui.alert('请选择支付方式','支付提示','确定',function (e) {
+							   e.index
+							},'div')
+						}
+					}else{
+						mui.alert('请选择开通时长','开通提示','确定',function (e) {
+						   e.index
+						},'div')
+					}
+					
+				});
+				
+				//用户区域单击跳转到登录界面
+				mui('.user-info').on('tap','.headPortrait',function(){
+					mui.openWindow({
+						url: '../myCenter/personal.html',
+						
+					});
+				});
+				
+				//返回按钮"<"
+				mui('.mui-bar-nav').on('tap', 'a.mui-icon-back',function(){
+					mui.back();
+				});
+				
+				//协议项点击跳转
+				mui('.mui-table-view').on('tap','.mui-table-view-cell',function(){
+					var url = this.getAttribute("url"); //获得页面路径
+					var protocol = this.getAttribute("protocol");
+					if(url){
+						//判断是否获得url
+						mui.openWindow({
+							url: 'Protocol.html',
+							extras: {
+								url: url,
+								protocol:protocol, 
+							}
+						});
+					}
+				});
+				
+				mui('.consent_box').on('tap','a.xy',function(){
+					var url = this.getAttribute("url"); //获得页面路径
+					var protocol = this.getAttribute("protocol");
+					if(url){
+						//判断是否获得url
+						mui.openWindow({
+							url: 'Protocol.html',
+							extras: {
+								url: url,
+								protocol:protocol, 
+							}
+						});
+					}
+				});
+				
+				
+			});
+			
+			//留作子页面返回时调用
+			function updateLoginState() {
+				var storage = localStorage.getItem('userInfo');
+				var userinfo = JSON.parse(storage);
+				alert(userinfo.userId);
+			}
+			
+		</script>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-back mui-pull-left"></a>
+			<h2 class="mui-title">开通VIP</h2>
+		</header>
+		<div class="mui-content" id="content">
+			<div class="user-info">
+				<div class="top-head"></div>
+				<img class="headPortrait" v-bind:src="userInfo.userIcon" />
+				<div class="info-body">
+					<p><b>{{userInfo.userName}}</b> (NO:{{userInfo.userPhone}}) <span>代金券：</span>{{userInfo.userVouchers}}</p>
+					<p><label>{{userInfo.userType}} </label> {{vipUserDate.vipEndDate}}</p>
+				</div>
+
+			</div>
+
+			<!-- 选择套餐项 -->
+			<div class="select_area">
+				<div class="mui-select-row"></div>
+				<div class="mui-select-row">
+					<label>选择开通时长</label>
+					<a href="#" class="mui-pull-right">价格说明<span class="mui-icon mui-icon-info" style="font-size: 14px;"></span></a>
+				</div>
+
+				<div class="mui-select-row">
+					<li class="mui-select-item" v-for="options in vipType" v-bind:vipitem="options.serviceType" v-bind:price="options.price" flag="false">
+						<h4 style="margin-top: 45%;">{{options.vipServiceType}}</h4>
+						<h5>￥<label style="font-size: 25px;">{{options.price}}</label></h5> 
+					</li>
+				</div>
+
+				<div class="mui-select-row" style="font-size: 13px;">
+					<div class="mui-input-row mui-checkbox mui-left">
+						<label>到期自动续费，可随时取消</label>
+						<input name="autoRenewal" value="Item1" type="checkbox" checked="checked">
+					</div>
+				</div>
+
+			</div>
+
+			<!-- 选择支付方式 -->
+			<div class="method-payment">
+				<div class="play-tiem" v-for="pay in methodPayment">
+					<div class="flex-img">
+						<img v-bind:src="pay.payIcon" />
+					</div>
+					<div class="flex-box">
+						<h5>{{pay.payText}}</h5>
+					</div>
+					<div class="mui-radio mui-pull-right input-item">
+						<label class="mui-pull-right"><input type="radio" name="radioBtn" :id="pay.payValue" :value="pay.payValue" /></label>
+					</div>
+				</div>
+
+			</div>
+
+			<!-- 会员权限展示 -->
+			<div class="privilegeds">
+				<div class="privilegeds-row"></div>
+				<div class="privilegeds-row">
+					<label>VIP会员特权</label>
+					<a href="#" class="mui-pull-right">更多特权<span class="mui-icon mui-icon-arrowright"></span></a>
+				</div>
+
+				<div class="privilegeds-row">
+					<li class="privilegeds-item" v-for="privileged in privileges">
+							<img v-bind:src="privileged.pIcon" />
+							<p class="mui-tab-label">{{privileged.pName}}</p>
+					</li>
+
+				</div>
+			</div>
+
+			<!-- 协议项 -->
+			<div class="menuOptions">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell" :protocol="items.aName" :url="items.url" v-for="items in agreement">
+						<a href="#" class="mui-navigate-right">{{items.aName}}</a>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+
+		<div class="footer-top"></div>
+		<footer class="mui-bar mui-bar-tab">
+			<div class="consent_box">
+				<input type="checkbox" id="consent" name="consent" value="consent"/>同意
+				<a style="color: #2AC845; font-size: 12px;" class="xy" url="https://27.8.77.109:1443/protocols/html4.html" protocol="会员服务协议">《会员服务协议》</a>
+			</div>
+			<div class="prices">
+				<label>总计:</label>￥
+				<span class="price_box" id="price_box">- -</span>
+			</div>
+			<button class="confirmPayment" value="">立即支付</button>
+		</footer>
+
+	</body>
+
+	<script>
+		var vue = new Vue({ //创建负责数据绑定的Vue对象
+			el: "#content",
+			data: {
+				userInfo: [], //用户信息
+				vipUserDate: [],
+				vipType: [], //套餐类型 
+				methodPayment: [],  //支付方式
+				privileges: [],  //特权项
+				agreement: []  //协议项
+			}
+		});
+
+		 var storage = localStorage.getItem('userInfo');
+		var userinfo = JSON.parse(storage);
+		vue.userInfo = userinfo;
+		var userNumber = userinfo.userNumber;
+		mui.post('https://192.168.43.157:1443/getVipDate.html',{userNumber:userNumber},function(data){
+			if(data.userPhone != null){
+				data.vipEndDate = " 有效期至:"+data.vipEndDate;
+				vue.vipUserDate = data;
+			}else{
+				userinfo.userType = "普通会员";
+				data.vipEndDate = "开通VIP,享更多特权";
+				vue.vipUserDate = data;
+			}
+			
+		},'json');
+		
+		mui.get('https://192.168.43.157:1443/json/vipinfo.json',function(data){
+			vue.methodPayment = data.methodPayment;
+			vue.privileges = data.privileges;
+			vue.agreement = data.agreement; 
+		},'json');
+		
+		mui.get('https://192.168.43.157:1443/getvip.html',function(data){
+			vue.vipType = data;
+		},'json');
+		
+		function checkVouchers(price){
+			var vouchers = vue.userInfo
+			if(vouchers.userVouchers > price){
+				return true; 
+			}else{
+				return false;
+			}
+			
+		}
+		
+	</script>
+
+</html>

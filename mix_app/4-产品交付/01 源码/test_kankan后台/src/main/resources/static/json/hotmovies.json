@@ -1,0 +1,176 @@
+{
+	"slider":[{
+		"sliderUrl":"http://192.168.43.157:8080/img/lb1.jpg",
+		"sliderName":"【明日之子】开口跪！医学少女《尘埃》惊艳华晨宇"
+
+		
+	},
+	{
+		"sliderUrl":"http://192.168.43.157:8080/img/lb2.jpg",
+		"sliderName":"【秦岭神树·更新】无邪张起灵吴胖子秘境探险"
+
+	},
+	{
+		"sliderUrl":"http://192.168.43.157:8080/img/lb3.jpg",
+		"sliderName":"【斗罗大陆·更新】浑身解数！唐山大战大力王"
+
+		
+	},
+	{
+		"sliderUrl":"http://192.168.43.157:8080/img/lb4.jpg",
+		"sliderName":"【带爸留学☀热播】孙红雷亲自教授曾舜晞谈恋爱"
+
+	}
+	],
+
+	"hotingMovies": [{
+			"videoUrl": "http://192.168.43.157:8848/dempsever/video/mov_bbb.mp4",
+			"imgUrl": "http://192.168.43.157:8080/img/tg.jpg",
+			"videoName": "233",
+			"videoDescribe": "阿瑟东"
+		},
+		{
+			"videoUrl": "http://192.168.43.157:8848/dempsever/video/mov_bbb.mp4",
+			"imgUrl": "http://192.168.43.157:8080/img/tg1.jpg",
+			"videoName": "233",
+			"videoDescribe": "阿瑟东"
+		},
+		{
+			"videoUrl": "http://192.168.43.157:8848/dempsever/video/mov_bbb.mp4",
+			"imgUrl": "http://192.168.43.157:8080/img/tg2.jpg",
+			"videoName": "233",
+			"videoDescribe": "阿瑟东"
+		},
+		{
+			"videoUrl": "http://192.168.43.157:8848/dempsever/video/mov_bbb.mp4",
+			"imgUrl": "http://192.168.43.157:8080/img/tg3.jpg",
+			"videoName": "233",
+			"videoDescribe": "阿瑟东"
+		},
+		{
+			"videoUrl": "http://192.168.43.157:8848/dempsever/video/mov_bbb.mp4",
+			"imgUrl": "http://192.168.43.157:8080/img/tg3.jpg",
+			"videoName": "233",
+			"videoDescribe": "阿瑟东"
+		},
+		{
+			"videoUrl": "http://192.168.43.157:8848/dempsever/video/mov_bbb.mp4",
+			"imgUrl": "http://192.168.43.157:8080/img/tg3.jpg",
+			"videoName": "233",
+			"videoDescribe": "阿瑟东"
+		}
+	],
+	"afterPlay":[
+		{
+			"afterplayUrl":"http://192.168.43.157:8080/img/afterplay.jpg",
+			"afterplayName":"狐妖小红娘",
+			"afterplayDescribe":"淮竹去世留霸业一生孤独"
+		},
+		{
+			"afterplayUrl":"http://192.168.43.157:8080/img/er2.jpg",
+			"afterplayName":"狐妖小红娘",
+			"afterplayDescribe":"淮竹去世留霸业一生孤独"
+		},
+		{
+			"afterplayUrl":"http://192.168.43.157:8080/img/er2.jpg",
+			"afterplayName":"狐妖小红娘",
+			"afterplayDescribe":"淮竹去世留霸业一生孤独"
+		},
+		{
+			"afterplayUrl":"http://192.168.43.157:8080/img/er2.jpg",
+			"afterplayName":"狐妖小红娘",
+			"afterplayDescribe":"淮竹去世留霸业一生孤独asdadsd"
+		},
+		{
+			"afterplayUrl":"http://192.168.43.157:8080/img/er2.jpg",
+			"afterplayName":"狐妖小红娘",
+			"afterplayDescribe":"淮竹去世留霸业一生孤独"
+		},
+		{
+			"afterplayUrl":"http://192.168.43.157:8080/img/er2.jpg",
+			"afterplayName":"狐妖小红娘",
+			"afterplayDescribe":"淮竹去世留霸业一生孤独"
+		},
+		{
+			"afterplayUrl":"http://192.168.43.157:8080/img/er2.jpg",
+			"afterplayName":"狐妖小红娘",
+			"afterplayDescribe":"淮竹去世留霸业一生孤独"
+		},
+		{
+			"afterplayUrl":"http://192.168.43.157:8080/img/er2.jpg",
+			"afterplayName":"狐妖小红娘",
+			"afterplayDescribe":"淮竹去世留霸业一生孤独"
+		},
+		{
+			"afterplayUrl":"http://192.168.43.157:8080/img/er2.jpg",
+			"afterplayName":"狐妖小红娘",
+			"afterplayDescribe":"淮竹去世留霸业一生孤独"
+		},
+		{
+			"afterplayUrl":"http://192.168.43.157:8080/img/er2.jpg",
+			"afterplayName":"狐妖小红娘",
+			"afterplayDescribe":"淮竹去世留霸业一生孤独"
+		},
+		{
+			"afterplayUrl":"http://192.168.43.157:8080/img/er2.jpg",
+			"afterplayName":"狐妖小红娘",
+			"afterplayDescribe":"淮竹去世留霸业一生孤独"
+		},
+		{
+			"afterplayUrl":"http://192.168.43.157:8080/img/er2.jpg",
+			"afterplayName":"狐妖小红娘",
+			"afterplayDescribe":"淮竹去世留霸业一生孤独"
+		},
+		{
+			"afterplayUrl":"http://192.168.43.157:8080/img/er2.jpg",
+			"afterplayName":"狐妖小红娘",
+			"afterplayDescribe":"淮竹去世留霸业一生孤独"
+		},
+		{
+			"afterplayUrl":"http://192.168.43.157:8080/img/er2.jpg",
+			"afterplayName":"狐妖小红娘",
+			"afterplayDescribe":"淮竹去世留霸业一生孤独"
+		},
+		{
+			"afterplayUrl":"http://192.168.43.157:8080/img/er2.jpg",
+			"afterplayName":"狐妖小红娘",
+			"afterplayDescribe":"淮竹去世留霸业一生孤独"
+		}
+	],
+	"sericeIcon":[{
+		"iconUrl":"http://192.168.43.157:8080/img/d1.png",
+		"iconDescribe":"豆瓣高分剧"
+	},
+	{
+		"iconUrl":"http://192.168.43.157:8080/img/d2.png",
+		"iconDescribe":"甜宠剧场"
+	},
+	{
+		"iconUrl":"http://192.168.43.157:8080/img/d3.png",
+		"iconDescribe":"网络剧"
+	},
+	{
+		"iconUrl":"http://192.168.43.157:8080/img/d4.png",
+		"iconDescribe":"火锅剧"
+	},
+	{
+		"iconUrl":"http://192.168.43.157:8080/img/d5.png",
+		"iconDescribe":"顶级美剧"
+	},
+	{
+		"iconUrl":"http://192.168.43.157:8080/img/d6.png",
+		"iconDescribe":"慢时光剧场"
+	},
+	{
+		"iconUrl":"http://192.168.43.157:8080/img/d7.png",
+		"iconDescribe":"必刷谍战剧"
+	},
+	{
+		"iconUrl":"http://192.168.43.157:8080/img/d8.png",
+		"iconDescribe":"全家都爱追"
+	},
+	{
+		"iconUrl":"http://192.168.43.157:8080/img/d9.png",
+		"iconDescribe":"原著小说"
+	}]
+}

@@ -1,0 +1,10 @@
+{
+	"collections":[{
+		"collectionsimg":"http://192.168.43.175/img/Collection.png",
+		"collectionswit":"我的收藏"
+	},
+	{
+		"collectionsimg":"http://192.168.43.175/img/help.png",
+		"collectionswit":"帮助"
+	}
+}

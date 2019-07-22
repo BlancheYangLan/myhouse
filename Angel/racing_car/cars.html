@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Racing</title>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/cars.css">
+	<link rel="stylesheet" type="text/html" href="cars.html">
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/jquery-1.3.1.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				//To switch directions up/down and left/right just place a "-" in front of the top/left attribute
+				//Vertical Sliding
+				$('.boxgrid.slidedown').hover(function(){
+					$(".cover", this).stop().animate({top:'-260px'},{queue:false,duration:300});
+				}, function() {
+					$(".cover", this).stop().animate({top:'0px'},{queue:false,duration:300});
+				});
+				//Horizontal Sliding
+				$('.boxgrid.slideright').hover(function(){
+					$(".cover", this).stop().animate({left:'325px'},{queue:false,duration:300});
+				}, function() {
+					$(".cover", this).stop().animate({left:'0px'},{queue:false,duration:300});
+				});
+				//Diagnal Sliding
+				$('.boxgrid.thecombo').hover(function(){
+					$(".cover", this).stop().animate({top:'260px', left:'325px'},{queue:false,duration:300});
+				}, function() {
+					$(".cover", this).stop().animate({top:'0px', left:'0px'},{queue:false,duration:300});
+				});
+				//Partial Sliding (Only show some of background)
+				$('.boxgrid.peek').hover(function(){
+					$(".cover", this).stop().animate({top:'90px'},{queue:false,duration:160});
+				}, function() {
+					$(".cover", this).stop().animate({top:'0px'},{queue:false,duration:160});
+				});
+				//Full Caption Sliding (Hidden to Visible)
+				$('.boxgrid.captionfull').hover(function(){
+					$(".cover", this).stop().animate({top:'160px'},{queue:false,duration:160});
+				}, function() {
+					$(".cover", this).stop().animate({top:'260px'},{queue:false,duration:160});
+				});
+				//Caption Sliding (Partially Hidden to Visible)
+				$('.boxgrid.caption').hover(function(){
+					$(".cover", this).stop().animate({top:'160px'},{queue:false,duration:160});
+				}, function() {
+					$(".cover", this).stop().animate({top:'220px'},{queue:false,duration:160});
+				});
+			});
+		</script>
+</head>
+<body>
+<iframe src="../header.php" width="100%" style="height:50px; "></iframe>
+<div>
+	<div class="up">
+		<div class="tu"><img src="../img/xxy_img/racing.png" height="200"></div>
+		<div class="wen">
+			<li><a href="the_schedule.html">THE SCHEDULE</a></li>
+			<li><a href="cars.html">CARS</a></li>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row" style="margin-top:10px;" id="img_style">
+			<img src="../img/yl_img/logo1.png">
+			<img src="../img/yl_img/7.jpg">
+		</div>
+		<div style="margin-top:30px;">
+			<p>每年F1上海站，上赛的看台就成了红色海洋，那是因为身着法拉利队服的法家车迷在中国真的非常多，包括笔者在内，我们对于法拉利一直以来都有着不一样的喜爱。可能是因为法拉利鲜红的颜色，也有可能是因为法拉利在F1赛事上一直以来的强大表现，总之法拉利在全球范围内都是不同于其他超跑品牌的存在。</p>
+			<p>说到法拉利的与众不同，除了品牌历史之外，最重要的就是其强大的产品性能了，像和笔者一同长大的同龄人就对F430、458这样的产品有着非常深入的喜爱。直到现在的488 GTB、812在内，它们都算是每个时代最好的法拉利产品。不过对于笔者而言，在我心目中却有一种法拉利是极其特别的存在，它在我心目中就是大神中的大神，它就是法拉利的XX。</p>
+		</div>
+		<hr />
+		<div class="row" style="margin-top:10px;">			
+			<div class="boxgrid caption">
+				<img src="../img/yl_img/racing_1.jpg" width="400" height="255">
+				<div class="cover boxcaption">
+					<h3>法拉利XX</h3>
+						<p>为了赛道而生</p>
+				</div>
+			</div>
+			<div class="box_wen">
+				<p>可能有一些新晋的车迷朋友不太了解法拉利的XX，简单来说吧，XX就是法拉利的一个为了赛道而生，但是仍然基于民用车型打造的特殊系列，这些车型是不能获得合法上路资格的。因为不能上路，所以如果车主想要开一下的话，要打电话给法拉利，叫他们把车运给你，或者你去参加法拉利的赛道活动才行。</p>
+				<p>目前法拉利推出过的XX车型主要有三款，分别是基于法拉利Enzo打造的FXX，基于599 GTB打造的599XX，以及基于LaFerrari搭载的FXX K。这三款车型无一例外都是各自时代法拉利民用旗舰车型的终极赛道版本，比较特殊的是法拉利在最近又针对FXX K搞了一个究极进化的版本，它就是拥有更加极限性能的FXX K EVO。</p>
+				<p>作为法拉利的终极赛道利器，XX车型一般也是有这非常严格的购买条件的，比如FXX K这台车，如果你想成为它的车主，并且在赛道里面耍耍的话，首先你得买下一台LaFerrari（售价2250万），然而LaFerrari还是限量499台的神器。至于FXX K EVO，笔者也不知道要符合什么条件才能购买，或许你把法拉利全系产品买个两圈，就会有排队报名买EVO的资格了吧。据说这款车的售价是400万欧元，虽说不算特别离谱，但是它的准入条件也同样苛刻得吓人。</p>
+			</div>
+			<div class="boxgrid thecombo">
+				<img class="cover" src="../img/yl_img/racing_3.jpg"/ width="400" height="260">
+				<h3>基于LaFerrari搭载的FXX K</h3>
+				<p>一个究极进化的版本<br/>它就是拥有更加极限性能的FXX K EVO</a></p>
+			</div>
+			<p>FXX K EVO主要是针对FXX K的空力进行了调整，简单来说就是增加了整辆车在行驶过程中的下压力，法拉利调整了包括头唇 、风刀 、尾鳍 、主动型大尾翼 、扩散器，乃至前后保杠等多个空气动力学部件。这使得 FXX K EVO 的空力效能比 FXX K 增加了23%，与街车版 LaFerrari 相比更是增加了75%。在时速200公里时，EVO能产生640kg的下压力，在极速时更是能产生830kg的下压力，下压力的提升让EVO拥有了更快劈弯的可能。法拉利还把Fxx K上的那台6.3L V12发动机拿了过来，这台V12和KERS系统共同发力时，可以提供最大1050Ps的马力，以及900Nm的扭矩。</p>
+		</div>
+	</div>
+
+</div>
+<iframe src="../footer.html" width="100%" style="height:350px; "> </iframe>
+</body>
+</html>
